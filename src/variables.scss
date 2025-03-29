@@ -53,3 +53,14 @@ $loader-space-s: 4px;
   font-size: $property;
   line-height: $property + 4px;
 }
+
+@mixin loader-container-size-counter($space, $size) {
+  padding: $space;
+  width: $size;
+  height: $size;
+}
+
+@mixin loader-size-counter($size) {
+  width: $size;
+  height: $size;
+}
