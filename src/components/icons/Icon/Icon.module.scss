@@ -1,0 +1,17 @@
+@import "/src/variables";
+
+.icon-container {
+  display: inline-flex;
+}
+
+.color-accent {
+  stroke: $icon-accent;
+}
+
+.color-primary {
+  stroke: $icon-primary;
+}
+
+.color-secondary {
+  stroke: $icon-secondary;
+}

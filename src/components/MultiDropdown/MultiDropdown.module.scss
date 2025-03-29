@@ -1,0 +1,25 @@
+@import "/src/variables.scss";
+
+.dropdown-option {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 12px;
+  padding-right: 12px;
+  box-sizing: border-box;
+  line-height: 20px;
+  background-color: $input-bg;
+
+  &:hover {
+    color: $text-secondary;
+  }
+
+  &.checked {
+    color: $text-accent;
+  }
+}
+
+.dropdown-container {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+}

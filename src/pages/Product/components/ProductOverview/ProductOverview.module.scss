@@ -1,0 +1,45 @@
+@import "/src/variables.scss";
+
+.product-overview {
+  background-color: $app-bg;
+  display: flex;
+  margin-top: 50px;
+  gap: 48px;
+
+  img {
+    width: 40%;
+  }
+
+  &__content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__footer {
+    display: flex;
+    gap: 30px;
+  }
+
+  &__action {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+
+    &-text {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.no-spacing {
+  padding: 0;
+  margin: 0;
+}

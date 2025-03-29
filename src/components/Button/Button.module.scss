@@ -1,0 +1,42 @@
+@import "/src/variables.scss";
+
+.button-component {
+  all: unset;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  height: 52px;
+  box-sizing: border-box;
+  padding: 14px 20px 14px 20px;
+
+  &.default {
+    background-color: $button-primary-bg;
+    color: $button-primary-text;
+  }
+
+  .loader {
+    border-color: $button-primary-text;
+    border-right-color: transparent;
+    display: inline-block;
+  }
+
+  &:hover {
+    background-color: $button-primary-bg-hover;
+    color: $button-primary-text-hover;
+  }
+
+  &:active {
+    background-color: $button-primary-bg-active;
+    color: $button-primary-text-active;
+  }
+
+  &.loading {
+    background-color: $button-primary-bg;
+    color: $button-primary-text;
+  }
+
+  &.disabled {
+    background-color: $button-primary-bg-disabled;
+    color: $button-primary-text-disabled;
+  }
+}

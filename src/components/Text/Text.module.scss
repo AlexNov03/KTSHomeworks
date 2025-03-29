@@ -1,0 +1,60 @@
+@import "/src/variables.scss";
+
+.title {
+  font-size: 44px;
+  font-weight: bold;
+}
+
+.button {
+  @extend .normal;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.p-20 {
+  @extend .normal;
+  @include fontcounter(20px);
+}
+
+.p-18 {
+  @extend .normal;
+  @include fontcounter(18px);
+}
+
+.p-16 {
+  @extend .normal;
+  @include fontcounter(16px);
+}
+
+.p-14 {
+  @extend .normal;
+  @include fontcounter(14px);
+}
+
+.normal {
+  font-weight: normal;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.primary {
+  color: $text-primary;
+}
+
+.secondary {
+  color: $text-secondary;
+}
+
+.accent {
+  color: $text-accent;
+}
+
+.button {
+  color: $text-button;
+}

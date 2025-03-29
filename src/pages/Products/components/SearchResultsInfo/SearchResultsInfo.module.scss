@@ -1,0 +1,16 @@
+@import "/src/variables.scss";
+
+.search-results-info {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+
+  &__text {
+    @include fontcounter(32px);
+  }
+
+  &__data {
+    font-size: 20px;
+    line-height: 20px;
+  }
+}

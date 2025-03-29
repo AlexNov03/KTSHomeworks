@@ -1,0 +1,15 @@
+.searchbar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &__input {
+    display: flex;
+    gap: 25px;
+    justify-content: space-between;
+  }
+
+  &__dropdown {
+    width: 300px;
+  }
+}

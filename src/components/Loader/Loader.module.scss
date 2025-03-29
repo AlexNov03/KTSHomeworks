@@ -1,0 +1,51 @@
+@import "/src/variables.scss";
+
+@mixin loader-container-size-counter($space, $size) {
+  padding: $space;
+  width: $size;
+  height: $size;
+}
+
+@mixin loader-size-counter($size) {
+  width: $size;
+  height: $size;
+}
+
+.loader-container {
+  box-sizing: border-box;
+
+  &.size-l {
+    @include loader-container-size-counter($loader-space-l, $loader-container-size-l);
+  }
+
+  &.size-m {
+    @include loader-container-size-counter($loader-space-m, $loader-container-size-m);
+  }
+
+  &.size-s {
+    @include loader-container-size-counter($loader-space-s, $loader-container-size-s);
+  }
+}
+
+.loader {
+  box-sizing: border-box;
+  border: solid var(--loader-bg);
+  border-right-color: transparent;
+  border-radius: 50%;
+  transform: rotate(32deg);
+
+  &.size-l {
+    border-width: 5px;
+    @include loader-size-counter($loader-size-l);
+  }
+
+  &.size-m {
+    border-width: 4px;
+    @include loader-size-counter($loader-size-m);
+  }
+
+  &.size-s {
+    border-width: 2px;
+    @include loader-size-counter($loader-size-s);
+  }
+}

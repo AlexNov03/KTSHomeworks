@@ -1,0 +1,55 @@
+$icon-primary: #000;
+$icon-secondary: #afadb5;
+$icon-accent: #518581;
+
+$header-bg: #ffffff;
+$app-bg: #fafafa;
+
+$text-primary: #000;
+$text-secondary: #afadb5;
+$text-accent: #518581;
+$text-button: #ffffff;
+
+$button-primary-bg: #518581;
+$button-primary-text: #fff;
+$button-primary-bg-hover: #86aaa7;
+$button-primary-text-hover: #fff;
+$button-primary-bg-disabled: #d9d9d9;
+$button-primary-text-disabled: #fff;
+$button-primary-bg-active: #487773;
+$button-primary-text-active: #fff;
+
+$add-button-border: #afadb5;
+
+$input-text: #000;
+$input-bg: #fff;
+$input-placeholder: #afadb5;
+$input-border: #fff;
+$input-bg-focus: #fff;
+$input-border-focus: #518581;
+$input-text-focus: #000;
+$input-bg-disabled: #fff;
+$input-border-disabled: #fff;
+$input-text-disabled: rgba(0, 0, 0, 0.2);
+
+$card-image-bg: #d9d9d9;
+$card-bg: #fff;
+
+$loader-bg: #518581;
+
+$loader-container-size-l: 60px;
+$loader-container-size-m: 48px;
+$loader-container-size-s: 24px;
+
+$loader-size-l: 40px;
+$loader-size-m: 32px;
+$loader-size-s: 16px;
+
+$loader-space-l: 10px;
+$loader-space-m: 8px;
+$loader-space-s: 4px;
+
+@mixin fontcounter($property) {
+  font-size: $property;
+  line-height: $property + 4px;
+}
