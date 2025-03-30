@@ -13,10 +13,11 @@
   "dependencies": {
     "axios": "^1.8.4",
     "classnames": "^2.5.1",
-    "node-sass": "^9.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router": "^7.4.0"
+    "react-router": "^7.4.0",
+    "react-scan": "^0.3.3",
+    "sass": "^9.0.0"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.7",
@@ -38,6 +39,7 @@
     "prettier": "^3.5.3",
     "sass-embedded": "^1.86.0",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0"

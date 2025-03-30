@@ -13,13 +13,13 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onCh
 };
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { value, disabled, className, placeholder, afterSlot, onChange, ...restProps } = props;
+  const { value, className, placeholder, afterSlot, onChange, ...restProps } = props;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
 
-  const inputClassName = classNames(styles['input-container'], disabled ? 'disabled' : '', className ? className : '');
+  const inputClassName = classNames(styles['input-container'], className);
 
   return (
     <div className={inputClassName}>
@@ -27,7 +27,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         ref={ref}
         {...restProps}
         type="text"
-        disabled={disabled ? true : false}
         {...(value ? { value } : null)}
         placeholder={placeholder}
         onChange={handleChange}

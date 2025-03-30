@@ -2,6 +2,8 @@ import classNames from 'classnames';
 import React, { useRef, useState } from 'react';
 import Input from 'components/Input';
 import ArrowDownIcon from 'components/icons/ArrowDownIcon';
+import Icon from 'components/icons/Icon';
+import { Promisable } from '../../utils/utils';
 
 import styles from './MultiDropdown.module.scss';
 
@@ -28,7 +30,7 @@ export type MultiDropdownProps = {
   /** Текущие выбранные значения поля, может быть пустым */
   value: Option[];
   /** Callback, вызываемый при выборе варианта */
-  onChange: (value: Option[]) => void;
+  onChange: (value: Option[]) => Promisable<void>;
   /** Заблокирован ли дропдаун */
   disabled?: boolean;
   /** Возвращает строку которая будет выводится в инпуте. В случае если опции не выбраны, строка должна отображаться как placeholder. */
@@ -58,7 +60,7 @@ export const DropDown: React.FC<DropDownProps> = ({ options, value, onChange }) 
     );
   });
 
-  return <div className="dropdown-options">{variants}</div>;
+  return <div className={styles['dropdown-options']}>{variants}</div>;
 };
 
 const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
@@ -74,7 +76,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
 
   const inputNode = useRef<HTMLInputElement | null>(null);
 
-  const dropdownClass = classNames('dropdown-container', className ? className : '');
+  const dropdownClass = classNames(styles['dropdown-container'], className);
 
   React.useEffect(() => {
     setPlaceholder(getTitle(value));
@@ -117,7 +119,11 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
     setCurOptions(options);
   }, [options]);
 
-  const afterSlot = <ArrowDownIcon width={25} height={24} color="secondary" />;
+  const afterSlot = (
+    <Icon width={25} height={24} color="secondary">
+      <ArrowDownIcon />
+    </Icon>
+  );
 
   return (
     <div ref={dropdownContainer} className={dropdownClass}>

@@ -69,7 +69,7 @@ export default defineConfig([
 
       'import/resolver': {
         typescript: {
-          project: '/home/alexnov/projects/kts/e-commerce/my-app/tsconfig.json',
+          project: './tsconfig.json',
         },
       },
 

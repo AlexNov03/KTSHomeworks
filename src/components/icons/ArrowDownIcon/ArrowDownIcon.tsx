@@ -1,16 +1,11 @@
-import classNames from 'classnames';
 import * as React from 'react';
 import { IconProps } from 'components/icons/Icon';
-import styles from 'components/icons/Icon/Icon.module.scss';
 
 const ArrowDownIcon: React.FC<IconProps> = (props) => {
-  const color = props.color ?? 'primary';
-  const { width, height, className, ...restProps } = props;
-  const checkIconClassNames = classNames(className, styles[`color-${color}`]);
+  const { width, height, ...restProps } = props;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={checkIconClassNames}
       {...restProps}
       width={width ? width : 24}
       height={height ? height : 24}

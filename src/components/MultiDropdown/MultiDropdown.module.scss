@@ -18,7 +18,14 @@
   }
 }
 
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+}
+
 .dropdown-container {
+  position: relative;
   display: inline-flex;
   flex-direction: column;
   gap: 8px;
