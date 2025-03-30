@@ -1,16 +1,5 @@
 @import "/src/variables.scss";
 
-@mixin loader-container-size-counter($space, $size) {
-  padding: $space;
-  width: $size;
-  height: $size;
-}
-
-@mixin loader-size-counter($size) {
-  width: $size;
-  height: $size;
-}
-
 .loader-container {
   box-sizing: border-box;
 
@@ -29,7 +18,7 @@
 
 .loader {
   box-sizing: border-box;
-  border: solid var(--loader-bg);
+  border: solid var($loader-bg);
   border-right-color: transparent;
   border-radius: 50%;
   transform: rotate(32deg);
