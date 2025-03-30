@@ -19,7 +19,7 @@ export type DropDownProps = {
 
   value: Option[];
 
-  onChange: (value: Option[]) => void;
+  onChange: (value: Option[]) => Promisable<void>;
 };
 
 /** Пропсы, которые принимает компонент Dropdown */
@@ -80,7 +80,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
 
   React.useEffect(() => {
     setPlaceholder(getTitle(value));
-  }, [value, getTitle]);
+  }, [value]);
 
   React.useEffect(() => {
     const func = (event: MouseEvent) => {
@@ -105,7 +105,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
     } else if (value.length !== 0) {
       val.value = placeholder;
     }
-  }, [isVisible, placeholder, value.length]);
+  }, [isVisible]);
 
   const handleChange = () => {
     if (inputNode.current) {
