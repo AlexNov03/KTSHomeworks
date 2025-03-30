@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { Ref } from 'react';
 
 import styles from './Input.module.scss';
 
@@ -10,10 +10,12 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onCh
   onChange: (value: string) => void;
   /** Слот для иконки справа */
   afterSlot?: React.ReactNode;
+
+  ref: Ref<HTMLInputElement | null>;
 };
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { value, className, placeholder, afterSlot, onChange, ...restProps } = props;
+const Input: React.FC<InputProps> = (props) => {
+  const { ref, value, className, placeholder, afterSlot, onChange, ...restProps } = props;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
@@ -34,8 +36,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
       {afterSlot}
     </div>
   );
-});
-
-Input.displayName = 'Input';
+};
 
 export default Input;
