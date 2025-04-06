@@ -18,10 +18,10 @@
 
 .loader {
   box-sizing: border-box;
-  border: solid var($loader-bg);
+  border: solid $loader-bg;
   border-right-color: transparent;
   border-radius: 50%;
-  transform: rotate(32deg);
+  animation: spin 1s linear infinite;
 
   &.size-l {
     border-width: 5px;

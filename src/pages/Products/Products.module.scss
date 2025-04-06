@@ -1,4 +1,11 @@
 .products-page {
   padding-left: 100px;
   padding-right: 100px;
+
+  &__loader {
+    display: flex;
+    margin-top: 20vh;
+    margin-bottom: 20vh;
+    justify-content: center;
+  }
 }

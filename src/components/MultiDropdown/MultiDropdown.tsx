@@ -1,67 +1,63 @@
 import classNames from 'classnames';
+import { observer } from 'mobx-react-lite';
 import React, { useRef, useState } from 'react';
 import Input from 'components/Input';
 import ArrowDownIcon from 'components/icons/ArrowDownIcon';
 import Icon from 'components/icons/Icon';
+import { CategoriesData } from 'models/Categories/CategoriesData';
 import { Promisable } from '../../utils/utils';
 
 import styles from './MultiDropdown.module.scss';
 
-export type Option = {
-  /** Ключ варианта, используется для отправки на бек/использования в коде */
-  key: string;
-  /** Значение варианта, отображается пользователю */
-  value: string;
-};
-
 export type DropDownProps = {
-  options: Option[];
+  options: CategoriesData[];
 
-  value: Option[];
+  value: CategoriesData[];
 
-  onChange: (value: Option[]) => Promisable<void>;
+  onChange: (value: CategoriesData[]) => Promisable<void>;
 };
 
 /** Пропсы, которые принимает компонент Dropdown */
 export type MultiDropdownProps = {
   className?: string;
   /** Массив возможных вариантов для выбора */
-  options: Option[];
+  options: CategoriesData[];
   /** Текущие выбранные значения поля, может быть пустым */
-  value: Option[];
+  value: CategoriesData[];
   /** Callback, вызываемый при выборе варианта */
-  onChange: (value: Option[]) => Promisable<void>;
+  onChange: (value: CategoriesData[]) => Promisable<void>;
   /** Заблокирован ли дропдаун */
   disabled?: boolean;
   /** Возвращает строку которая будет выводится в инпуте. В случае если опции не выбраны, строка должна отображаться как placeholder. */
-  getTitle: (value: Option[]) => string;
+  getTitle: (value: CategoriesData[]) => string;
 };
 
-export const DropDown: React.FC<DropDownProps> = ({ options, value, onChange }) => {
+const DropDown: React.FC<DropDownProps> = ({ options, value, onChange }) => {
   const variants = options.map((option) => {
-    const checked = value.find((elem) => elem.key === option.key);
+    const checked = value.find((elem) => elem.id === option.id);
     return (
       <div
-        key={option.key}
+        key={option.id}
         onClick={() => {
-          const foundOption = value.find((elem) => elem.key === option.key);
+          const foundOption = value.find((elem) => elem.id === option.id);
 
           if (foundOption) {
-            onChange(value.filter((elem) => elem.key !== option.key));
+            onChange(value.filter((elem) => elem.id !== option.id));
           } else {
             onChange([...value, option]);
           }
         }}
         className={classNames('dropdown-option', styles['dropdown-option'], checked ? styles['checked'] : '')}
-        data-key={option.key}
       >
-        {option.value}
+        {option.name}
       </div>
     );
   });
 
   return <div className={styles['dropdown-options']}>{variants}</div>;
 };
+
+export const ObservableDropDown = observer(DropDown);
 
 const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
   const { options, value, onChange, disabled, getTitle, className, ...restProps } = props;
@@ -111,7 +107,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
     if (inputNode.current) {
       const searchStr = inputNode.current.value;
       setPlaceholder(searchStr);
-      setCurOptions(options.filter((opt) => opt.value.toLowerCase().includes(searchStr.toLowerCase())));
+      setCurOptions(options.filter((opt) => opt.name.toLowerCase().includes(searchStr.toLowerCase())));
     }
   };
 
@@ -136,9 +132,9 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
         afterSlot={afterSlot}
         value=""
       />
-      {!disabled && isVisible && <DropDown options={curOptions} value={value} onChange={onChange} />}
+      {!disabled && isVisible && <ObservableDropDown options={curOptions} value={value} onChange={onChange} />}
     </div>
   );
 };
 
-export default MultiDropdown;
+export default observer(MultiDropdown);

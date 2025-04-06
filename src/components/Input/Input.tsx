@@ -11,7 +11,7 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onCh
   /** Слот для иконки справа */
   afterSlot?: React.ReactNode;
 
-  ref: Ref<HTMLInputElement | null>;
+  ref?: Ref<HTMLInputElement | null>;
 };
 
 const Input: React.FC<InputProps> = (props) => {

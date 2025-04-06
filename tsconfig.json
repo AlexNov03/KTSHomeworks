@@ -4,6 +4,9 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
+      "models": ["models/*"],
+      "store": ["store/*"],
+      "api": ["api/*"],
       "components": ["components/*"],
       "config": ["config/*"],
       "styles": ["styles/*"],

@@ -49,6 +49,15 @@ $loader-space-l: 10px;
 $loader-space-m: 8px;
 $loader-space-s: 4px;
 
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @mixin fontcounter($property) {
   font-size: $property;
   line-height: $property + 4px;

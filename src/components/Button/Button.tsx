@@ -13,7 +13,7 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 
   className?: string;
 
-  onClick?: React.MouseEvent;
+  onClick?: React.MouseEventHandler;
 
   disabled?: boolean;
 };
