@@ -1,12 +1,26 @@
 import React from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, useLocation, useNavigate } from 'react-router';
 import Header from 'components/Header';
-import { useQueryParamsStoreInit } from 'store/RootStore/hooks/useQueryParamsStoreInit';
+
+import rootStore from 'store/RootStore/RootStore';
 
 import styles from './App.module.scss';
 
 const App = () => {
-  useQueryParamsStoreInit();
+  const location = useLocation();
+
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    rootStore.query.setSearch(location.search);
+  }, [location.search, location.pathname]);
+
+  React.useEffect(() => {
+    rootStore.query.setNavigateCallback((val: string) => {
+      navigate(val);
+    });
+  }, [navigate]);
+
   return (
     <div className={`app ${styles.app}`}>
       <Header />

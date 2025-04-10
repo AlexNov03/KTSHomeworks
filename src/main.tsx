@@ -8,7 +8,7 @@ import './index.scss';
 const router = createBrowserRouter(routesConfig);
 
 createRoot(document.getElementById('root')!).render(
-  // <StrictMode>
+  
   <RouterProvider router={router} />,
-  // </StrictMode>,
+  
 );

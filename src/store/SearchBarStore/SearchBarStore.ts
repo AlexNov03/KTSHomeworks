@@ -1,4 +1,4 @@
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, IReactionDisposer, makeObservable, observable, reaction, runInAction } from 'mobx';
 import ApiCategories from 'api/ApiCategories/ApiCategories';
 import { ProductsQueryParamsNames } from 'api/ApiProducts/ApiProducts';
 import { CategoriesData, normalizeCategoriesData } from 'models/Categories/CategoriesData';
@@ -40,6 +40,8 @@ export default class SearchBarStore implements ILocalStore {
         try {
           this._meta = Meta.success;
           this._dropdownOptions = response.data.map(normalizeCategoriesData);
+          const id = rootStore.query.getParam(ProductsQueryParamsNames.CATEGORY_ID);
+          this._dropdownVal = this._dropdownOptions.filter((elem) => elem.id === Number(id));
         } catch {
           this._meta = Meta.error;
           this._dropdownOptions = [];
@@ -68,15 +70,9 @@ export default class SearchBarStore implements ILocalStore {
 
   setInputVal(val: string) {
     this._inputVal = val;
-    if (val) {
-      rootStore.query.addParam(ProductsQueryParamsNames.TITLE, val);
-      return;
-    }
-    rootStore.query.deleteParam(ProductsQueryParamsNames.TITLE);
   }
 
   setDropdownVal(val: CategoriesData[]) {
-    this._dropdownVal = val;
     const newID = val.at(-1)?.id;
     if (newID) {
       rootStore.query.addParam(ProductsQueryParamsNames.CATEGORY_ID, String(newID));
@@ -90,5 +86,22 @@ export default class SearchBarStore implements ILocalStore {
     this._dropdownOptions = [];
     this._inputVal = '';
     this._dropdownVal = [];
+    this._reactionTitleDisposer();
+    this._reactionCategoryDisposer();
   }
+
+  private readonly _reactionTitleDisposer: IReactionDisposer = reaction(
+    () => rootStore.query.getParam(ProductsQueryParamsNames.TITLE),
+    (title) => {
+      const newTitle = title ? (title as string) : '';
+      this._inputVal = newTitle;
+    },
+  );
+
+  private readonly _reactionCategoryDisposer: IReactionDisposer = reaction(
+    () => rootStore.query.getParam(ProductsQueryParamsNames.CATEGORY_ID),
+    (id) => {
+      this._dropdownVal = this._dropdownOptions.filter((elem) => elem.id === Number(id));
+    },
+  );
 }

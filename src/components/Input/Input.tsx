@@ -29,7 +29,7 @@ const Input: React.FC<InputProps> = (props) => {
         ref={ref}
         {...restProps}
         type="text"
-        {...(value ? { value } : null)}
+        {...(value ? { value } : { value: '' })}
         placeholder={placeholder}
         onChange={handleChange}
       />

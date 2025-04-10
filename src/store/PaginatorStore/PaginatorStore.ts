@@ -1,4 +1,4 @@
-import { action, makeObservable, observable } from 'mobx';
+import { action, IReactionDisposer, makeObservable, observable, reaction } from 'mobx';
 import { ProductsQueryParamsNames } from 'api/ApiProducts/ApiProducts';
 import rootStore from 'store/RootStore/RootStore';
 import { ILocalStore } from 'utils/useLocalStore';
@@ -16,11 +16,6 @@ export default class PaginatorStore implements ILocalStore {
       increment: action,
       decrement: action,
     });
-
-    const value = rootStore.query.getParam(ProductsQueryParamsNames.OFFSET);
-    if (value) {
-      this._offset = Number(value);
-    }
   }
 
   get offset() {
@@ -28,16 +23,24 @@ export default class PaginatorStore implements ILocalStore {
   }
 
   increment() {
-    this._offset++;
+    rootStore.query.addParam(ProductsQueryParamsNames.OFFSET, String(this._offset + 1));
   }
 
   decrement() {
     if (this._offset > 0) {
-      this._offset--;
+      rootStore.query.addParam(ProductsQueryParamsNames.OFFSET, String(this._offset - 1));
     }
   }
 
   destroy() {
     this._offset = 0;
+    this._reactionOffsetDisposer();
   }
+
+  private readonly _reactionOffsetDisposer: IReactionDisposer = reaction(
+    () => rootStore.query.getParam(ProductsQueryParamsNames.OFFSET),
+    (offset) => {
+      this._offset = offset ? Number(offset) : 0;
+    },
+  );
 }

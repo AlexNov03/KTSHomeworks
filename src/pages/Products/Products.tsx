@@ -21,7 +21,7 @@ const Products = () => {
   return (
     <div className={styles['products-page']}>
       <Intro />
-      <SearchBar onClick={() => productsStore.searchByTitle()} />
+      <SearchBar />
       <SearchResultsInfo numProducts={productsStore.cardsDataLength} />
       {productsStore.meta === Meta.loading && (
         <div className={styles['products-page__loader']}>

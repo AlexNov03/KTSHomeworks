@@ -68,6 +68,8 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
 
   const [isVisible, setVisibility] = useState(false);
 
+  const [inputVal, setInputVal] = useState('');
+
   const dropdownContainer = useRef<HTMLDivElement | null>(null);
 
   const inputNode = useRef<HTMLInputElement | null>(null);
@@ -106,6 +108,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
   const handleChange = () => {
     if (inputNode.current) {
       const searchStr = inputNode.current.value;
+      setInputVal(searchStr);
       setPlaceholder(searchStr);
       setCurOptions(options.filter((opt) => opt.name.toLowerCase().includes(searchStr.toLowerCase())));
     }
@@ -130,7 +133,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
         onChange={handleChange}
         placeholder={placeholder}
         afterSlot={afterSlot}
-        value=""
+        value={inputVal}
       />
       {!disabled && isVisible && <ObservableDropDown options={curOptions} value={value} onChange={onChange} />}
     </div>

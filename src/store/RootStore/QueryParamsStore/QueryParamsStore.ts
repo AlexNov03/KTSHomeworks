@@ -1,14 +1,16 @@
 import { action, computed, makeObservable, observable } from 'mobx';
 import { parse, ParsedQs, stringify } from 'qs';
 
-type PrivateFields = '_params';
+type PrivateFields = '_params' | '_navigateCallback';
 
 export default class QueryParamsStore {
   private _params: qs.ParsedQs = {};
   private _search: string = '';
+  private _navigateCallback: ((val: string) => void) | null = null;
 
   constructor() {
     makeObservable<QueryParamsStore, PrivateFields>(this, {
+      _navigateCallback: observable,
       _params: observable.ref,
       addParam: action,
       deleteParam: action,
@@ -35,26 +37,22 @@ export default class QueryParamsStore {
   }
 
   addParam(key: string, value: string) {
-    this._params = { ...this._params };
-    this._params[key] = value;
-    this._updateHistoryApi();
+    const newParams = { ...this._params };
+    newParams[key] = value;
+    if (this._navigateCallback) {
+      this._navigateCallback('?' + stringify(newParams));
+    }
   }
 
   deleteParam(key: string) {
     const newParams = { ...this._params };
     delete newParams[key];
-    this._params = newParams;
-    this._updateHistoryApi();
+    if (this._navigateCallback) {
+      this._navigateCallback('?' + stringify(newParams));
+    }
   }
 
-  private _updateHistoryApi() {
-    let flag = false;
-    for (const param in this._params) {
-      if (this._params[param] !== undefined) {
-        flag = true;
-      }
-    }
-    const newState = flag ? '?' + stringify(this._params) : '';
-    window.history.pushState({}, '', window.location.pathname + newState);
+  setNavigateCallback(func: (val: string) => void) {
+    this._navigateCallback = func;
   }
 }

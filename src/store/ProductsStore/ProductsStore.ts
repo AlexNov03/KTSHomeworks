@@ -23,7 +23,6 @@ export default class ProductsStore implements ILocalStore {
       getProductsList: action,
       cardsDataLength: computed,
       cardsData: computed,
-      searchByTitle: action,
       meta: computed,
     });
 
@@ -68,19 +67,21 @@ export default class ProductsStore implements ILocalStore {
     this._meta = Meta.initial;
     this._reactionCategoryDisposer();
     this._reactionPaginatorDisposer();
+    this._reactionTitleDisposer();
   }
 
-  searchByTitle() {
-    const title = rootStore.query.getParam(ProductsQueryParamsNames.TITLE);
-    set(this._queryParams, ProductsQueryParamsNames.TITLE, title as string);
-    this.getProductsList();
-  }
+  private readonly _reactionTitleDisposer: IReactionDisposer = reaction(
+    () => rootStore.query.getParam(ProductsQueryParamsNames.TITLE),
+    (title) => {
+      set(this._queryParams, ProductsQueryParamsNames.TITLE, title);
+      this.getProductsList();
+    },
+  );
 
   private readonly _reactionPaginatorDisposer: IReactionDisposer = reaction(
     () => this._paginatorStore.offset,
     (offset) => {
       set(this._queryParams, ProductsQueryParamsNames.OFFSET, String(offset));
-      rootStore.query.addParam(ProductsQueryParamsNames.OFFSET, String(offset));
       this.getProductsList();
     },
   );
@@ -94,16 +95,6 @@ export default class ProductsStore implements ILocalStore {
   );
 
   private _initializeStartParams() {
-    const title = rootStore.query.getParam(ProductsQueryParamsNames.TITLE);
-    if (title) {
-      set(this._queryParams, ProductsQueryParamsNames.TITLE, title as string);
-    }
-
-    const category = rootStore.query.getParam(ProductsQueryParamsNames.CATEGORY_ID);
-    if (category) {
-      set(this._queryParams, ProductsQueryParamsNames.CATEGORY_ID, category as string);
-    }
-
     let offset = rootStore.query.getParam(ProductsQueryParamsNames.OFFSET);
     if (!offset) {
       offset = String(this._paginatorStore.offset);
