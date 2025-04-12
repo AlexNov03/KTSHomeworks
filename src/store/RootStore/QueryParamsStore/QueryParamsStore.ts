@@ -5,7 +5,7 @@ type PrivateFields = '_params' | '_navigateCallback';
 
 export default class QueryParamsStore {
   private _params: qs.ParsedQs = {};
-  private _search: string = '';
+  // private _search: string = '';
   private _navigateCallback: ((val: string) => void) | null = null;
 
   constructor() {
@@ -29,11 +29,7 @@ export default class QueryParamsStore {
 
   setSearch(search: string) {
     search = search.startsWith('?') ? search.slice(1) : search;
-
-    if (this._search !== search) {
-      this._search = search;
-      this._params = parse(search);
-    }
+    this._params = parse(search);
   }
 
   addParam(key: string, value: string) {

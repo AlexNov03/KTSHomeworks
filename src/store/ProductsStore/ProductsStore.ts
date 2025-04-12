@@ -25,8 +25,6 @@ export default class ProductsStore implements ILocalStore {
       cardsData: computed,
       meta: computed,
     });
-
-    this._initializeStartParams();
   }
 
   get paginatorStore() {
@@ -65,46 +63,28 @@ export default class ProductsStore implements ILocalStore {
     this._cardsData = [];
     this._queryParams = {};
     this._meta = Meta.initial;
-    this._reactionCategoryDisposer();
-    this._reactionPaginatorDisposer();
-    this._reactionTitleDisposer();
+    this._reactionQueryDisposer();
   }
 
-  private readonly _reactionTitleDisposer: IReactionDisposer = reaction(
-    () => rootStore.query.getParam(ProductsQueryParamsNames.TITLE),
-    (title) => {
+  private readonly _reactionQueryDisposer: IReactionDisposer = reaction(
+    () => rootStore.query.params,
+    () => {
+      const title = rootStore.query.getParam(ProductsQueryParamsNames.TITLE);
       set(this._queryParams, ProductsQueryParamsNames.TITLE, title);
-      this.getProductsList();
-    },
-  );
 
-  private readonly _reactionPaginatorDisposer: IReactionDisposer = reaction(
-    () => this._paginatorStore.offset,
-    (offset) => {
+      const category = rootStore.query.getParam(ProductsQueryParamsNames.CATEGORY_ID);
+      set(this._queryParams, ProductsQueryParamsNames.CATEGORY_ID, category);
+
+      const offset = this._paginatorStore.offset;
       set(this._queryParams, ProductsQueryParamsNames.OFFSET, String(offset));
+
+      let limit = rootStore.query.getParam(ProductsQueryParamsNames.LIMIT);
+      if (!limit) {
+        limit = String(ITEMS_PER_PAGE);
+      }
+      set(this._queryParams, ProductsQueryParamsNames.LIMIT, limit as string);
+
       this.getProductsList();
     },
   );
-
-  private readonly _reactionCategoryDisposer: IReactionDisposer = reaction(
-    () => rootStore.query.getParam(ProductsQueryParamsNames.CATEGORY_ID),
-    (category) => {
-      set(this._queryParams, ProductsQueryParamsNames.CATEGORY_ID, category as string);
-      this.getProductsList();
-    },
-  );
-
-  private _initializeStartParams() {
-    let offset = rootStore.query.getParam(ProductsQueryParamsNames.OFFSET);
-    if (!offset) {
-      offset = String(this._paginatorStore.offset);
-    }
-    set(this._queryParams, ProductsQueryParamsNames.OFFSET, offset as string);
-
-    let limit = rootStore.query.getParam(ProductsQueryParamsNames.LIMIT);
-    if (!limit) {
-      limit = String(ITEMS_PER_PAGE);
-    }
-    set(this._queryParams, ProductsQueryParamsNames.LIMIT, limit as string);
-  }
 }

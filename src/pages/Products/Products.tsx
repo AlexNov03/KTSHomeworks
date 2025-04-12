@@ -14,10 +14,6 @@ import styles from './Products.module.scss';
 const Products = () => {
   const productsStore = useLocalStore<ProductsStore>(() => new ProductsStore());
 
-  React.useEffect(() => {
-    productsStore.getProductsList();
-  }, [productsStore]);
-
   return (
     <div className={styles['products-page']}>
       <Intro />

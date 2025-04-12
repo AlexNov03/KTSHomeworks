@@ -12,6 +12,7 @@ const App = () => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
+    console.log('location search', location.search);
     rootStore.query.setSearch(location.search);
   }, [location.search, location.pathname]);
 
