@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@use "src/variables.scss" as *;
 
 .app {
   background-color: $app-bg;

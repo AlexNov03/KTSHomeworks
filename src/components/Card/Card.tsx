@@ -1,7 +1,7 @@
 import classNames from 'classnames';
-import React from 'react';
 import Button from 'components/Button';
 import Text from 'components/Text';
+import React from 'react';
 import styles from './Card.module.scss';
 
 export type CardProps = {
@@ -29,7 +29,7 @@ const Card: React.FC<CardProps> = (props) => {
   return (
     <div className={classNames(className, styles['card'])} {...restProps}>
       <div className={styles['card__image']}>
-        <img src={image} alt="card-img" />
+        <img referrerPolicy="no-referrer" src={image} alt="card-img" />
       </div>
       <div className={styles['card__content']}>
         <div className={styles['card__description']}>

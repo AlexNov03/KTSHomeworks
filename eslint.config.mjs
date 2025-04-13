@@ -4,7 +4,7 @@ import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
 import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
+
 import { defineConfig } from 'eslint/config';
 import _import from 'eslint-plugin-import';
 import prettier from 'eslint-plugin-prettier';

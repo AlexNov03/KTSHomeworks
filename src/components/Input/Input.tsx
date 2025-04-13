@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React, { Ref } from 'react';
+import { observer } from 'mobx-react-lite';
 
 import styles from './Input.module.scss';
 

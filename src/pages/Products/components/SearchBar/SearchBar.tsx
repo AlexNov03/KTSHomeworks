@@ -1,5 +1,5 @@
 import { useLocalStore, observer } from 'mobx-react-lite';
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { ProductsQueryParamsNames } from 'api/ApiProducts/ApiProducts';
 import Button from 'components/Button';
@@ -27,6 +27,11 @@ const SearchBar = () => {
     rootStore.query.addParam(ProductsQueryParamsNames.TITLE, searchBarStore.inputVal);
   };
 
+  const getTitle = useCallback(
+    (values: CategoriesData[]) => (values.length === 0 ? 'Filter' : values.map(({ name }) => name).join(', ')),
+    [],
+  );
+
   return (
     <div className={styles['searchbar']}>
       <div className={styles['searchbar__input']}>
@@ -42,9 +47,7 @@ const SearchBar = () => {
         options={searchBarStore.dropdownOptions}
         value={searchBarStore.dropdownVal}
         onChange={searchBarStore.setDropdownVal}
-        getTitle={(values: CategoriesData[]) =>
-          values.length === 0 ? 'Filter' : values.map(({ name }) => name).join(', ')
-        }
+        getTitle={getTitle}
       />
     </div>
   );

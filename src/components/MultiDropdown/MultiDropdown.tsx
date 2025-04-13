@@ -78,6 +78,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
 
   React.useEffect(() => {
     setPlaceholder(getTitle(value));
+    console.log(value);
   }, [value]);
 
   React.useEffect(() => {

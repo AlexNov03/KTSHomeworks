@@ -1,5 +1,5 @@
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import ApiProducts from 'api/ApiProducts/ApiProducts';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { ProductData } from 'models/Products/ProductData';
 import { Meta } from 'utils/meta';
 import { ILocalStore } from 'utils/useLocalStore';

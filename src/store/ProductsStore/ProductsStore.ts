@@ -1,10 +1,11 @@
 import { action, computed, IReactionDisposer, makeObservable, observable, reaction, runInAction, set } from 'mobx';
-import ApiProducts, { ProductsQueryParams, ProductsQueryParamsNames } from 'api/ApiProducts/ApiProducts';
+import { ConcatenationScope } from 'webpack';
 import { ProductData } from 'models/Products/ProductData';
 import PaginatorStore, { ITEMS_PER_PAGE } from 'store/PaginatorStore';
-import rootStore from 'store/RootStore/RootStore';
 import { Meta } from 'utils/meta';
 import { ILocalStore } from 'utils/useLocalStore';
+import ApiProducts, { ProductsQueryParams, ProductsQueryParamsNames } from '../../api/ApiProducts/ApiProducts';
+import rootStore from '../RootStore/RootStore';
 
 type PrivateFields = '_meta' | '_cardsData' | '_paginatorStore' | '_queryParams';
 
@@ -47,6 +48,7 @@ export default class ProductsStore implements ILocalStore {
     this._meta = Meta.loading;
 
     const response = await ApiProducts.getProducts(this._queryParams);
+    console.log(response);
 
     runInAction(() => {
       if (response.success) {
