@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 
 import styles from './Loader.module.scss';
@@ -11,8 +12,8 @@ export type LoaderProps = {
 
 const Loader: React.FC<LoaderProps> = ({ size = 'l', className }) => {
   return (
-    <div className={`loader-container ${styles[`size-${size}`]} ${className}`}>
-      <div className={`loader ${styles[`size-${size}`]}`}></div>
+    <div className={classNames(styles[`loader-container`], styles[`size-${size}`], className)}>
+      <div className={classNames(styles[`loader`], styles[`size-${size}`], className)}></div>
     </div>
   );
 };

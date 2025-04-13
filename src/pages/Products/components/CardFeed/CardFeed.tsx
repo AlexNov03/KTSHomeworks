@@ -1,13 +1,15 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { useNavigate } from 'react-router';
 import Card from 'components/Card';
 
 import { routesMasks } from 'config/routesMasks';
-import { CardData } from 'pages/Products/Products';
+
+import { ProductData } from 'models/Products/ProductData';
 import styles from './CardFeed.module.scss';
 
 export type CardFeedProps = {
-  cards: CardData[];
+  cards: ProductData[];
 };
 
 const CardFeed: React.FC<CardFeedProps> = ({ cards }) => {
@@ -35,4 +37,4 @@ const CardFeed: React.FC<CardFeedProps> = ({ cards }) => {
   );
 };
 
-export default CardFeed;
+export default observer(CardFeed);

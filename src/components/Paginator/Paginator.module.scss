@@ -1,0 +1,29 @@
+@import "/src/variables.scss";
+
+.paginator {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  &__button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__content {
+    display: flex;
+  }
+
+  &__page-item {
+    cursor: pointer;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    &.checked {
+      background-color: $paginator-bg-accent;
+      color: $text-button;
+    }
+  }
+}
