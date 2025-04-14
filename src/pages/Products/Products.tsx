@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite';
-import React from 'react';
 import Loader from 'components/Loader';
 import Paginator from 'components/Paginator';
 import ProductsStore from 'store/ProductsStore';

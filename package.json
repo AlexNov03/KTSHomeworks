@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development npx webpack serve --mode=development",
     "build": "NODE_ENV=production npx webpack --mode=production",
-    "ts-check": "tsc --skipLibCheck --noEmit --project tsconfig.json",
+    "ts-check": "tsc --skipLibCheck --noEmit --project tsconfig.app.json",
     "preview": "vite preview",
     "lint": "eslint \"./src/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint \"./src/**/*.{js,jsx,ts,tsx}\" --fix"

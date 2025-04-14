@@ -1,4 +1,3 @@
-import React from 'react';
 import { RouteObject } from 'react-router';
 import Product from 'pages/Product';
 import Products from 'pages/Products';

@@ -1,4 +1,3 @@
-import React from 'react';
 import CheckIcon from 'components/icons/CheckIcon';
 
 import styles from './Header.module.scss';

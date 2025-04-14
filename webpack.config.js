@@ -50,7 +50,12 @@ export default {
     new HtmlWebpackPlugin({
       template: path.join(srcPath, 'index.html'),
     }),
-    new ForkTsCheckerWebpackPlugin(),
+    new ForkTsCheckerWebpackPlugin({
+      async: false,
+      typescript: {
+        configFile: path.join(__dirname, 'tsconfig.node.json'),
+      },
+    }),
     !isProd && new ReactRefreshPlugin(),
     isProd &&
       new MiniCssExtractPlugin({
