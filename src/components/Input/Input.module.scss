@@ -23,7 +23,7 @@
     border-color: $input-border-focus;
   }
 
-  &--error {
+  &__error {
     border-color: $input-border-error;
 
     &:focus-within {
@@ -60,7 +60,7 @@
   padding: 0 4px;
   color: $caption-color;
 
-  &--error {
+  &__error {
     color: $error-color;
   }
 }

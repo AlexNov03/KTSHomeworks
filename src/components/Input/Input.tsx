@@ -20,7 +20,7 @@ const Input: React.FC<InputProps> = (props) => {
   };
 
   const containerClasses = classNames(styles['input-container'], className, {
-    [styles['input-container--error']]: error,
+    [styles['input-container__error']]: error,
   });
 
   return (
@@ -38,7 +38,7 @@ const Input: React.FC<InputProps> = (props) => {
         {afterSlot && <div className={styles['after-slot']}>{afterSlot}</div>}
       </div>
       {(error || caption) && (
-        <div className={classNames(styles['message'], { [styles['message--error']]: error })}>{error || caption}</div>
+        <div className={classNames(styles['message'], { [styles['message__error']]: error })}>{error || caption}</div>
       )}
     </div>
   );
