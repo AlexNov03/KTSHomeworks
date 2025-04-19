@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "browserslist": [
+    "last 4 versions"
+  ],
   "scripts": {
     "dev": "NODE_ENV=development npx webpack serve --mode=development",
     "build": "NODE_ENV=production npx webpack --mode=production",
@@ -23,7 +26,8 @@
     "react-router": "^7.4.0",
     "react-scan": "^0.3.3",
     "regenerator-runtime": "^0.14.1",
-    "sass": "^1.86.3"
+    "sass": "^1.86.3",
+    "serve": "^14.2.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.27.0",

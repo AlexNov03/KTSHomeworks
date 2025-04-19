@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router';
-import rootStore from 'store/RootStore/RootStore';
 import Header from 'components/Header';
+import rootStore from 'store/RootStore/RootStore';
 import styles from './App.module.scss';
 
 const App = () => {

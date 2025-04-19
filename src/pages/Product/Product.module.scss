@@ -1,11 +1,30 @@
 .product-page {
-  padding-left: 100px;
-  padding-right: 39px;
+  padding: 0 16px;
 
   &__loader {
     display: flex;
-    margin-top: 20vh;
-    margin-bottom: 20vh;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
     justify-content: center;
+  }
+
+  @media (min-width: 768px) {
+    padding-left: 32px;
+    padding-right: 32px;
+
+    &__loader {
+      margin-top: 15vh;
+      margin-bottom: 15vh;
+    }
+  }
+
+  @media (min-width: 992px) {
+    padding-left: 100px;
+    padding-right: 39px;
+
+    &__loader {
+      margin-top: 20vh;
+      margin-bottom: 20vh;
+    }
   }
 }

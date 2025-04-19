@@ -4,7 +4,11 @@ export const routesMasks = {
     create: () => '/',
   },
   product: {
-    mask: '/product/:id',
+    mask: 'product/:id',
     create: (id: number) => `/product/${id}`,
+  },
+  cart: {
+    mask: 'cart',
+    create: () => `/cart`,
   },
 };

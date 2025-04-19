@@ -48,7 +48,6 @@ export default class ProductsStore implements ILocalStore {
     this._meta = Meta.loading;
 
     const response = await ApiProducts.getProducts(this._queryParams);
-    console.log(response);
 
     runInAction(() => {
       if (response.success) {

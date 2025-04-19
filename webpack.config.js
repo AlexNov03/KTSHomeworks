@@ -45,6 +45,7 @@ export default {
   output: {
     path: buildPath,
     filename: 'bundle.js',
+    publicPath: '/',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -93,6 +94,7 @@ export default {
     port: 9000,
     hot: true,
     open: true,
+    historyApiFallback: true,
   },
   resolve: {
     extensions: ['.tsx', '.jsx', '.ts', '.js'],
