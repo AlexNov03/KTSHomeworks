@@ -8,12 +8,14 @@ export type LoaderProps = {
   size?: 's' | 'm' | 'l';
   /** Дополнительный класс */
   className?: string;
+
+  color?: 'accent' | 'white';
 };
 
-const Loader: React.FC<LoaderProps> = ({ size = 'l', className }) => {
+const Loader: React.FC<LoaderProps> = ({ size = 'l', className, color = 'accent' }) => {
   return (
     <div className={classNames(styles[`loader-container`], styles[`size-${size}`], className)}>
-      <div className={classNames(styles[`loader`], styles[`size-${size}`], className)}></div>
+      <div className={classNames(styles[`loader`], styles[`size-${size}`], className, styles[`color-${color}`])}></div>
     </div>
   );
 };

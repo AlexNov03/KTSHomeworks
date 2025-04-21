@@ -17,7 +17,6 @@ export type ProductOverviewProps = {
   price: number;
   getPrevPhoto: () => void;
   getNextPhoto: () => void;
-  direction: string;
 };
 
 const ProductOverview: React.FC<ProductOverviewProps> = (props) => {

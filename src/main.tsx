@@ -1,7 +1,7 @@
 // @ts-expect-error - React is needed for JSX
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router';
+import { RouterProvider, createBrowserRouter } from 'react-router';
 import { routesConfig } from './config/routes.tsx';
 import './config/configureMobX.ts';
 import './index.scss';

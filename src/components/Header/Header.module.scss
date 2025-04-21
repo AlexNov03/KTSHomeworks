@@ -2,6 +2,7 @@
 
 .header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   background-color: $header-bg;
   padding: 10px;
@@ -34,5 +35,20 @@
     padding: 0px 6px 0px 6px;
     z-index: 5;
     transform: translateX(-85%);
+  }
+}
+
+.auth {
+  cursor: pointer;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-right: 20px;
+
+  &__image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
   }
 }

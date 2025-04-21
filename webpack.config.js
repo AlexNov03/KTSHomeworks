@@ -7,7 +7,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const buildPath = path.resolve(__dirname, 'dist');
+const buildPath = path.resolve(__dirname, 'build');
 const srcPath = path.resolve(__dirname, 'src');
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -45,7 +45,7 @@ export default {
   output: {
     path: buildPath,
     filename: 'bundle.js',
-    publicPath: '/',
+    publicPath: '/KTSHomeworks/',
   },
   plugins: [
     new HtmlWebpackPlugin({

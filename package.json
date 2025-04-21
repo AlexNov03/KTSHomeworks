@@ -2,17 +2,20 @@
   "name": "my-app",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://alexnov03.github.io/KTSHomeworks",
   "type": "module",
   "browserslist": [
     "last 4 versions"
   ],
   "scripts": {
     "dev": "NODE_ENV=development npx webpack serve --mode=development",
-    "build": "NODE_ENV=production npx webpack --mode=production",
     "ts-check": "tsc --skipLibCheck --noEmit --project tsconfig.app.json",
     "preview": "vite preview",
     "lint": "eslint \"./src/**/*.{js,jsx,ts,tsx}\"",
-    "lint:fix": "eslint \"./src/**/*.{js,jsx,ts,tsx}\" --fix"
+    "lint:fix": "eslint \"./src/**/*.{js,jsx,ts,tsx}\" --fix",
+    "build": "webpack --mode production",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "axios": "^1.8.4",
@@ -57,6 +60,7 @@
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
+    "gh-pages": "^6.3.0",
     "globals": "^15.15.0",
     "html-webpack-plugin": "^5.6.3",
     "mini-css-extract-plugin": "^2.9.2",

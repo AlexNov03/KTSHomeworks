@@ -11,4 +11,8 @@ export const routesMasks = {
     mask: 'cart',
     create: () => `/cart`,
   },
+  auth: {
+    mask: 'auth',
+    create: () => `/auth`,
+  },
 };

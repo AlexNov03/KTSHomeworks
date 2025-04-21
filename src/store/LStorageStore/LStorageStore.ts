@@ -22,6 +22,7 @@ export default class LStorageStore {
       increaseCartProductAmount: action,
       decreaseCartProductAmount: action,
       addCartProduct: action,
+      removeCartProduct: action,
     });
     const startProducts = localStorage.getItem('cartProducts');
     this._cartProducts = startProducts ? JSON.parse(startProducts) : [];

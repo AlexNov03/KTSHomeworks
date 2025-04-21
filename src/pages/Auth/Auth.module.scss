@@ -1,0 +1,16 @@
+.auth-page {
+  padding-left: 16px;
+  padding-right: 16px;
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @media (min-width: 992px) {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}

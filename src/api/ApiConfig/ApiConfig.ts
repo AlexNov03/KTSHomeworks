@@ -19,4 +19,28 @@ export const ApiConfig = {
       return this.mask;
     },
   },
+  upload: {
+    mask: `${baseUrl}/files/upload`,
+    create: function () {
+      return this.mask;
+    },
+  },
+  register: {
+    mask: `${baseUrl}/users/`,
+    create: function () {
+      return this.mask;
+    },
+  },
+  login: {
+    mask: `${baseUrl}/auth/login`,
+    create: function () {
+      return this.mask;
+    },
+  },
+  profile: {
+    mask: `${baseUrl}/auth/profile`,
+    create: function () {
+      return this.mask;
+    },
+  },
 };

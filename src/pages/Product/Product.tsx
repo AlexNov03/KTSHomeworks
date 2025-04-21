@@ -35,7 +35,6 @@ const Product = () => {
           getPrevPhoto={productStore.getPrevPhoto}
           getNextPhoto={productStore.getNextPhoto}
           currentIdx={productStore.currentIdx}
-          direction={productStore.direction}
         />
       )}
     </div>

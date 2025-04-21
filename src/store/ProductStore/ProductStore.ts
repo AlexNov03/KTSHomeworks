@@ -6,12 +6,9 @@ import { ILocalStore } from 'utils/useLocalStore';
 
 type PrivateFields = '_meta' | '_cardData' | '_currentIdx';
 
-type Direction = 'left' | 'right' | 'nothing';
-
 export default class ProductStore implements ILocalStore {
   private _cardData: ProductData | null = null;
   private _meta: Meta = Meta.initial;
-  private _direction: Direction = 'nothing';
   private _currentIdx: number = 0;
 
   constructor() {
@@ -52,10 +49,6 @@ export default class ProductStore implements ILocalStore {
 
   get meta() {
     return this._meta;
-  }
-
-  get direction() {
-    return this._direction;
   }
 
   async getProductInfo(id: number) {

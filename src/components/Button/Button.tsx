@@ -35,7 +35,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       onClick={loading || disabled ? undefined : onClick}
       {...restProps}
     >
-      {loading && <Loader size="s" />}
+      {loading && <Loader color="white" size="s" />}
       {children}
     </button>
   );

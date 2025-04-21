@@ -18,8 +18,19 @@
 
 .loader {
   box-sizing: border-box;
-  border: solid $loader-bg;
-  border-right-color: transparent;
+  border-width: 1px;
+  border-style: solid;
+
+  &.color-accent {
+    border-color: $loader-bg;
+    border-right-color: transparent;
+  }
+
+  &.color-white {
+    border-color: $loader-white-bg;
+    border-right-color: transparent;
+  }
+
   border-radius: 50%;
   animation: spin 1s linear infinite;
 

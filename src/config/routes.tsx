@@ -1,4 +1,5 @@
 import { RouteObject } from 'react-router';
+import Auth from 'pages/Auth';
 // import Auth from 'pages/Auth';
 import Cart from 'pages/Cart';
 import Product from 'pages/Product';
@@ -22,6 +23,10 @@ export const routesConfig: RouteObject[] = [
       {
         path: routesMasks.cart.mask,
         element: <Cart />,
+      },
+      {
+        path: routesMasks.auth.mask,
+        element: <Auth />,
       },
     ],
   },
