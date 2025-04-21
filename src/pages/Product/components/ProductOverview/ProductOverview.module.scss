@@ -1,41 +1,131 @@
-@import "/src/variables.scss";
+@use "src/variables.scss" as *;
 
 .product-overview {
   background-color: $app-bg;
+  position: relative;
   display: flex;
-  margin-top: 50px;
-  gap: 48px;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
 
-  img {
-    width: 40%;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    margin-top: 50px;
+    gap: 48px;
+  }
+
+  &__image {
+    &-container {
+      display: flex;
+      overflow: hidden;
+      flex-shrink: 0;
+      width: 100%;
+
+      @media (min-width: 768px) {
+        width: 40%;
+      }
+    }
+
+    &-ribbon {
+      display: flex;
+
+      img {
+        width: 100%;
+      }
+    }
   }
 
   &__content {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: 24px;
+
+    @media (min-width: 768px) {
+      gap: 48px;
+    }
   }
 
-  &__title {
+  &__header {
     display: flex;
     flex-direction: column;
     gap: 24px;
   }
 
+  &__title {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    @media (min-width: 768px) {
+      margin-top: 0;
+    }
+  }
+
   &__footer {
     display: flex;
-    gap: 30px;
+    justify-content: space-between;
+
+    @media (min-width: 768px) {
+      justify-content: start;
+      gap: 30px;
+    }
   }
 
   &__action {
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: 24px;
+
+    @media (min-width: 768px) {
+      gap: 48px;
+    }
 
     &-text {
       margin-bottom: 0px;
+      margin-top: 0;
+
+      @media (min-width: 768px) {
+        margin-top: unset;
+      }
     }
+  }
+}
+
+.slider__button {
+  padding: 20px;
+  background-color: rgba($icon-primary, 0.4);
+  border-radius: 50%;
+
+  &:hover {
+    background-color: rgba($icon-primary, 0.3);
+  }
+
+  &-container {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    top: 15%;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: absolute;
+
+    @media (min-width: 430px) {
+      top: 25%;
+    }
+
+    @media (min-width: 768px) {
+      top: 45%;
+      width: 40%;
+    }
+  }
+
+  &-left {
+    top: 50%;
+    left: 2%;
+  }
+
+  &-right {
+    top: 50%;
+    left: 33%;
   }
 }
 

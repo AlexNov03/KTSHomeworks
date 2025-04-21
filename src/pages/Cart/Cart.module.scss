@@ -1,0 +1,44 @@
+@use "src/variables.scss" as *;
+
+.cart-page {
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media (min-width: 768px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @media (min-width: 992px) {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+
+  &__items {
+    border-radius: 15px;
+    background-color: $header-bg;
+    padding: 10px;
+
+    @media (min-width: 768px) {
+      padding: 20px;
+    }
+  }
+
+  &__title {
+    margin: 1rem 0;
+
+    @media (min-width: 768px) {
+      margin: 2rem 0;
+    }
+  }
+}
+
+.no-spacing {
+  padding: 0;
+  margin: 0;
+}
+
+.text-vertical {
+  display: flex;
+  align-items: center;
+}

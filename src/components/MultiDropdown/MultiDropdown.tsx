@@ -14,7 +14,7 @@ export type DropDownProps = {
 
   value: CategoriesData[];
 
-  onChange: (value: CategoriesData[]) => Promisable<void>;
+  checkOption: (option: CategoriesData) => Promisable<void>;
 };
 
 /** Пропсы, которые принимает компонент Dropdown */
@@ -25,27 +25,27 @@ export type MultiDropdownProps = {
   /** Текущие выбранные значения поля, может быть пустым */
   value: CategoriesData[];
   /** Callback, вызываемый при выборе варианта */
-  onChange: (value: CategoriesData[]) => Promisable<void>;
+  checkOption: (option: CategoriesData) => Promisable<void>;
   /** Заблокирован ли дропдаун */
   disabled?: boolean;
-  /** Возвращает строку которая будет выводится в инпуте. В случае если опции не выбраны, строка должна отображаться как placeholder. */
-  getTitle: (value: CategoriesData[]) => string;
+  /** строка которая будет выводится в инпуте. В случае если опции не выбраны, строка должна отображаться как placeholder. */
+  title: string;
+
+  filterOptions: (val: string) => Promisable<void>;
+
+  dropdownInputVal: string;
+
+  setDropdownInputVal: (val: string) => Promisable<void>;
 };
 
-const DropDown: React.FC<DropDownProps> = ({ options, value, onChange }) => {
+export const DropDown: React.FC<DropDownProps> = observer(({ options, value, checkOption }) => {
   const variants = options.map((option) => {
     const checked = value.find((elem) => elem.id === option.id);
     return (
       <div
         key={option.id}
         onClick={() => {
-          const foundOption = value.find((elem) => elem.id === option.id);
-
-          if (foundOption) {
-            onChange(value.filter((elem) => elem.id !== option.id));
-          } else {
-            onChange([...value, option]);
-          }
+          checkOption(option);
         }}
         className={classNames('dropdown-option', styles['dropdown-option'], checked ? styles['checked'] : '')}
       >
@@ -55,30 +55,29 @@ const DropDown: React.FC<DropDownProps> = ({ options, value, onChange }) => {
   });
 
   return <div className={styles['dropdown-options']}>{variants}</div>;
-};
-
-export const ObservableDropDown = observer(DropDown);
+});
 
 const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
-  const { options, value, onChange, disabled, getTitle, className, ...restProps } = props;
-
-  const [curOptions, setCurOptions] = useState(options);
-
-  const [placeholder, setPlaceholder] = useState(getTitle(value));
+  const {
+    options,
+    value,
+    checkOption,
+    disabled,
+    title,
+    filterOptions,
+    setDropdownInputVal,
+    dropdownInputVal,
+    className,
+    ...restProps
+  } = props;
 
   const [isVisible, setVisibility] = useState(false);
-
-  const [inputVal, setInputVal] = useState('');
 
   const dropdownContainer = useRef<HTMLDivElement | null>(null);
 
   const inputNode = useRef<HTMLInputElement | null>(null);
 
   const dropdownClass = classNames(styles['dropdown-container'], className);
-
-  React.useEffect(() => {
-    setPlaceholder(getTitle(value));
-  }, [value]);
 
   React.useEffect(() => {
     const func = (event: MouseEvent) => {
@@ -93,30 +92,13 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
     return () => document.removeEventListener('click', func);
   }, []);
 
-  React.useEffect(() => {
-    const val = inputNode.current;
-    if (!val) {
-      return;
-    }
-    if (isVisible) {
-      val.value = '';
-    } else if (value.length !== 0) {
-      val.value = placeholder;
-    }
-  }, [isVisible]);
-
   const handleChange = () => {
     if (inputNode.current) {
       const searchStr = inputNode.current.value;
-      setInputVal(searchStr);
-      setPlaceholder(searchStr);
-      setCurOptions(options.filter((opt) => opt.name.toLowerCase().includes(searchStr.toLowerCase())));
+      setDropdownInputVal(searchStr);
+      filterOptions(searchStr);
     }
   };
-
-  React.useEffect(() => {
-    setCurOptions(options);
-  }, [options]);
 
   const afterSlot = (
     <Icon width={25} height={24} color="secondary">
@@ -131,13 +113,13 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
         ref={inputNode}
         disabled={disabled}
         onChange={handleChange}
-        placeholder={placeholder}
+        placeholder={title}
         afterSlot={afterSlot}
-        value={inputVal}
+        value={dropdownInputVal}
       />
-      {!disabled && isVisible && <ObservableDropDown options={curOptions} value={value} onChange={onChange} />}
+      {!disabled && isVisible && <DropDown options={options} value={value} checkOption={checkOption} />}
     </div>
   );
 };
 
-export default observer(MultiDropdown);
+export default MultiDropdown;

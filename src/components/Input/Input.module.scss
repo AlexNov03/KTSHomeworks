@@ -1,34 +1,66 @@
-@import "/src/variables.scss";
+@use "src/variables.scss" as *;
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-grow: 1;
+}
 
 .input-container {
   display: flex;
+  align-items: center;
   flex-grow: 1;
-  padding-top: 13px;
-  padding-bottom: 13px;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding: 12px;
   gap: 8px;
   border: 1px solid $input-border;
-  justify-content: space-between;
+  border-radius: 5px;
   box-sizing: border-box;
   background-color: $input-bg;
+  transition: border-color 0.3s ease;
 
   &:focus-within {
-    border: 1px solid $input-border-focus;
+    border-color: $input-border-focus;
   }
 
-  input {
-    all: unset;
-    flex-grow: 1;
-    font-size: 16px;
-    color: $input-text;
+  &__error {
+    border-color: $input-border-error;
 
-    &:disabled {
-      color: $input-text-disabled;
+    &:focus-within {
+      border-color: $input-border-error;
     }
+  }
+}
 
-    &::placeholder {
-      color: $input-placeholder;
-    }
+.input {
+  all: unset;
+  flex-grow: 1;
+  font-size: 16px;
+  color: $input-text;
+  width: 100%;
+
+  &:disabled {
+    color: $input-text-disabled;
+  }
+
+  &::placeholder {
+    color: $input-placeholder;
+  }
+}
+
+.after-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message {
+  font-size: 12px;
+  line-height: 1.4;
+  padding: 0 4px;
+  color: $caption-color;
+
+  &__error {
+    color: $error-color;
   }
 }

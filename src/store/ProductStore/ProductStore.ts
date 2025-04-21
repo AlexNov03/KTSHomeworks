@@ -4,24 +4,47 @@ import { ProductData } from 'models/Products/ProductData';
 import { Meta } from 'utils/meta';
 import { ILocalStore } from 'utils/useLocalStore';
 
-type PrivateFields = '_meta' | '_cardData';
+type PrivateFields = '_meta' | '_cardData' | '_currentIdx';
 
 export default class ProductStore implements ILocalStore {
   private _cardData: ProductData | null = null;
   private _meta: Meta = Meta.initial;
+  private _currentIdx: number = 0;
 
   constructor() {
     makeObservable<ProductStore, PrivateFields>(this, {
       _meta: observable,
       _cardData: observable,
+      _currentIdx: observable,
+
       getProductInfo: action,
       meta: computed,
       cardData: computed,
+
+      getPrevPhoto: action.bound,
+      getNextPhoto: action.bound,
     });
   }
 
   get cardData() {
     return this._cardData;
+  }
+
+  get currentIdx() {
+    return this._currentIdx;
+  }
+
+  getPrevPhoto() {
+    if (this._currentIdx === 0) {
+      return;
+    }
+    this._currentIdx--;
+  }
+
+  getNextPhoto() {
+    if (this._cardData && this._currentIdx + 1 < this._cardData.images.length) {
+      this._currentIdx++;
+    }
   }
 
   get meta() {

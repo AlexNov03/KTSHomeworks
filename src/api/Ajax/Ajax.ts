@@ -5,9 +5,11 @@ export enum HTTPMethod {
   POST = 'post',
 }
 
-export type AjaxParams = {
+export type AjaxParams<T = unknown> = {
   Method: HTTPMethod;
   url: string;
+  Headers?: Record<string, string>;
+  Body?: T;
 };
 
 export enum StatusHTTP {
@@ -40,10 +42,14 @@ export type AjaxResponse<T, ErrorT = unknown> =
       status: StatusHTTP.UNEXPECTED_ERROR;
     };
 
-export const Ajax = async <T, ErrorT = unknown>(params: AjaxParams): Promise<AjaxResponse<T, ErrorT>> => {
+export const Ajax = async <T, ErrorT = unknown, P = unknown>(
+  params: AjaxParams<P>,
+): Promise<AjaxResponse<T, ErrorT>> => {
   const result = await axios({
     method: params.Method,
     url: params.url,
+    headers: params.Headers,
+    data: params.Body,
   });
 
   try {

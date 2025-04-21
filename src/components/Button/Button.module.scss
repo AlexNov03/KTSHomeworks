@@ -1,4 +1,4 @@
-@import "/src/variables.scss";
+@use "src/variables.scss" as *;
 
 .button-component {
   all: unset;
@@ -26,7 +26,7 @@
   }
 
   &:active {
-    background-color: $button-primary-bg-active;
+    background-color: $button-primary-bg;
     color: $button-primary-text-active;
   }
 

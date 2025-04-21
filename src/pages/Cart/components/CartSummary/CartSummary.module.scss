@@ -1,0 +1,36 @@
+@use "src/variables.scss" as *;
+
+.cart-summary {
+  margin-top: 20px;
+  background-color: $header-bg;
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+
+  @media (min-width: 768px) {
+    padding: 20px;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__header {
+    padding-bottom: 10px;
+    margin: 0px;
+  }
+
+  &__discount {
+    color: $text-accent;
+  }
+}
+
+.underly {
+  border-bottom: 1px solid $text-secondary;
+}
+
+.no-spacing {
+  padding: 0;
+  margin: 0;
+}

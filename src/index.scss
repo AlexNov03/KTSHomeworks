@@ -1,5 +1,4 @@
-@import "./variables.scss";
-@import "./styles/Roboto/fonts.css";
+@use "src/variables.scss" as *;
 
 html,
 body {

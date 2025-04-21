@@ -14,7 +14,7 @@ export type TextProps = {
   /** Контент */
   children: React.ReactNode;
   /** Цвет */
-  color?: 'primary' | 'secondary' | 'accent' | 'button';
+  color?: 'primary' | 'secondary' | 'accent' | 'button' | 'error';
   /** Максимальное кол-во строк */
   maxLines?: number;
 };
@@ -35,9 +35,9 @@ const Text: React.FC<TextProps> = ({ className, view, tag, weight, children, col
     style: maxLines
       ? {
           display: '-webkit-box',
-          '-webkit-box-orient': 'vertical',
+          WebkitBoxOrient: 'vertical' as const,
           overflow: 'hidden',
-          '-webkit-line-clamp': `${maxLines}`,
+          WebkitLineClamp: `${maxLines}` as const,
         }
       : {},
   };

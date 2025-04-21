@@ -28,10 +28,13 @@ const Product = () => {
       )}
       {productStore.cardData && (
         <ProductOverview
-          src={productStore.cardData.images[0]}
+          images={productStore.cardData.images}
           title={productStore.cardData.title}
           description={productStore.cardData.description}
           price={productStore.cardData.price}
+          getPrevPhoto={productStore.getPrevPhoto}
+          getNextPhoto={productStore.getNextPhoto}
+          currentIdx={productStore.currentIdx}
         />
       )}
     </div>

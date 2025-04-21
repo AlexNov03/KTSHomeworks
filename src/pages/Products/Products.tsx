@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import React from 'react';
-import Loader from 'components/Loader';
+
 import Paginator from 'components/Paginator';
 import ProductsStore from 'store/ProductsStore';
 import { Meta } from 'utils/meta';
@@ -19,12 +18,12 @@ const Products = () => {
       <Intro />
       <SearchBar />
       <SearchResultsInfo numProducts={productsStore.cardsDataLength} />
-      {productsStore.meta === Meta.loading && (
+      {/* {productsStore.meta === Meta.loading && (
         <div className={styles['products-page__loader']}>
           <Loader size="l" />
         </div>
-      )}
-      {productsStore.meta === Meta.success && <CardFeed cards={productsStore.cardsData} />}
+      )} */}
+      <CardFeed loading={productsStore.meta === Meta.loading} cards={productsStore.cardsData} />
       <Paginator paginatorStore={productsStore.paginatorStore} />
     </div>
   );

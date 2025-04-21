@@ -82,6 +82,8 @@ export default defineConfig([
 
     rules: {
       'no-console': 'warn',
+      'react/jsx-uses-react': 'off',
+      'react/react-in-jsx-scope': 'off',
 
       'import/order': [
         'error',
