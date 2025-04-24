@@ -1,0 +1,59 @@
+@use "src/variables.scss" as *;
+
+.counter {
+  &__container {
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba($text-accent, 0.08);
+    border-radius: 24px;
+    padding: 6px 7px;
+    border: 1px solid rgba($text-accent, 0.15);
+    transition: all 0.2s ease;
+    cursor: default;
+
+    &:hover {
+      background: rgba($text-accent, 0.12);
+    }
+  }
+
+  &__button {
+    &-plus,
+    &-minus {
+      width: 28px;
+      height: 28px;
+      border: 1.5px solid $text-accent;
+      border-radius: 50%;
+      background: white;
+      color: $text-accent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 16px;
+      font-weight: 500;
+
+      &:hover {
+        background: rgba($text-accent, 0.08);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  &__window {
+    min-width: 12px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+    color: $text-accent;
+    padding: 4px 12px;
+    border-radius: 4px;
+    background: white;
+    border: 1px solid rgba($text-accent, 0.2);
+  }
+}

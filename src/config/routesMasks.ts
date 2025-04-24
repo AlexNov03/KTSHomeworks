@@ -15,4 +15,8 @@ export const routesMasks = {
     mask: 'auth',
     create: () => `/auth`,
   },
+  profile: {
+    mask: 'profile',
+    create: () => `/profile`,
+  },
 };

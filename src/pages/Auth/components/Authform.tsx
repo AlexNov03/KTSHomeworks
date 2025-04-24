@@ -65,7 +65,7 @@ const AuthForm: React.FC = () => {
         </div>
       </div>
       <div className={styles['auth-container__title']}>
-        <Text tag="h2">Enter your account</Text>
+        {formKind === FormKind.LOGIN ? <Text tag="h2">Login</Text> : <Text tag="h2">Register</Text>}
       </div>
       <Input
         placeholder={emailPlaceholder}
@@ -74,6 +74,7 @@ const AuthForm: React.FC = () => {
         {...(emailError && { error: emailError })}
       />
       <Input
+        type="password"
         placeholder={passwordPlaceholder}
         value={passwordValue}
         onChange={handlePasswordChange}
@@ -116,7 +117,12 @@ const AuthForm: React.FC = () => {
         </>
       )}
 
-      {authStore.apiError && <Text color="error">{authStore.apiError}</Text>}
+      {authStore.apiMessage &&
+        (authStore.meta === Meta.error ? (
+          <Text color="error">{authStore.apiMessage}</Text>
+        ) : (
+          <Text color="accent">{authStore.apiMessage}</Text>
+        ))}
 
       <Button
         loading={authStore.meta === Meta.loading}

@@ -1,11 +1,15 @@
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import React, { JSX } from 'react';
+import { useNavigate } from 'react-router';
 import Button from 'components/Button';
 import Text from 'components/Text';
 import ArrowLeftIcon from 'components/icons/ArrowLeftIcon';
 import ArrowRightIcon from 'components/icons/ArrowRightIcon';
 import Icon from 'components/icons/Icon';
+import { routesMasks } from 'config/routesMasks';
+import lStorageStore from 'store/LStorageStore';
+import defaultImage from '../../../../assets/image.png';
 
 import styles from './ProductOverview.module.scss';
 
@@ -15,16 +19,26 @@ export type ProductOverviewProps = {
   images: string[];
   description: string;
   price: number;
+  id: number;
+  slug: string;
   getPrevPhoto: () => void;
   getNextPhoto: () => void;
 };
 
 const ProductOverview: React.FC<ProductOverviewProps> = (props) => {
-  const { title, images, description, price, currentIdx, getPrevPhoto, getNextPhoto } = props;
+  const { title, id, slug, images, description, price, currentIdx, getPrevPhoto, getNextPhoto } = props;
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const img = e.target as HTMLImageElement;
+    img.src = defaultImage;
+    img.onerror = null;
+  };
 
   const imageElements: JSX.Element[] = images.map((image) => (
-    <img key={image} referrerPolicy="no-referrer" src={image} />
+    <img key={image} referrerPolicy="no-referrer" src={image} onError={handleImageError} />
   ));
+
+  const navigate = useNavigate();
 
   return (
     <div className={styles['product-overview']}>
@@ -45,7 +59,7 @@ const ProductOverview: React.FC<ProductOverviewProps> = (props) => {
           <Text view="title" className={styles['product-overview__title']}>
             {title}
           </Text>
-          <Text view="p-20" color="secondary" className={styles['no-spacing']}>
+          <Text maxLines={2} view="p-20" color="secondary" className={styles['no-spacing']}>
             {description}
           </Text>
         </header>
@@ -53,7 +67,23 @@ const ProductOverview: React.FC<ProductOverviewProps> = (props) => {
           <Text view="title" className={styles['product-overview__action-text']}>{`$${price}`}</Text>
           <footer className={styles['product-overview__footer']}>
             <Button>Buy Now</Button>
-            <Button>Add to Card</Button>
+            <Button
+              onClick={(e) => {
+                e.stopPropagation();
+                lStorageStore.addCartProduct({
+                  id: id,
+                  title: title,
+                  slug: slug,
+                  price: price,
+                  description: description,
+                  images: images,
+                  amount: 1,
+                });
+                navigate(routesMasks.cart.create());
+              }}
+            >
+              Add to Card
+            </Button>
           </footer>
         </div>
       </main>

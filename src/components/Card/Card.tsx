@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 import Text from 'components/Text';
+import defaultImage from '../../assets/image.png';
 import styles from './Card.module.scss';
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -17,13 +18,19 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 const Card: React.FC<CardProps> = (props) => {
   const { className, image, captionSlot, title, loading, subtitle, contentSlot, actionSlot, ...restProps } = props;
 
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const img = e.target as HTMLImageElement;
+    img.src = defaultImage;
+    img.onerror = null;
+  };
+
   return (
     <div className={classNames(className, styles.card)} {...restProps}>
       <div className={styles.card__image}>
         {loading ? (
           <div className={classNames(styles.skeleton, styles['skeleton__image'])} />
         ) : (
-          <img referrerPolicy="no-referrer" src={image} alt="card-img" />
+          <img referrerPolicy="no-referrer" src={image} alt="card-img" onError={handleImageError} />
         )}
       </div>
       <div className={styles.card__content}>

@@ -1,36 +1,90 @@
 @use "src/variables.scss" as *;
 
 .cart-summary {
-  margin-top: 20px;
-  background-color: $header-bg;
-  padding: 10px;
-  border-radius: 15px;
-  margin-bottom: 20px;
+  background: white;
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba($text-secondary, 0.1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  margin: 24px 0;
 
-  @media (min-width: 768px) {
-    padding: 20px;
+  &:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+  }
+
+  &__header {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0 0 24px 0;
+    padding-bottom: 16px;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: $text-accent;
+      border-radius: 3px;
+    }
   }
 
   &__info {
     display: flex;
     justify-content: space-between;
-  }
+    align-items: center;
+    padding: 12px 0;
+    font-size: 1.05rem;
 
-  &__header {
-    padding-bottom: 10px;
-    margin: 0px;
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba($text-secondary, 0.1);
+    }
   }
 
   &__discount {
     color: $text-accent;
+    font-weight: 600;
+    position: relative;
+
+    &::before {
+      content: "-";
+    }
   }
-}
 
-.underly {
-  border-bottom: 1px solid $text-secondary;
-}
+  .total-row {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 2px solid rgba($text-primary, 0.1);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $text-primary;
+  }
 
-.no-spacing {
-  padding: 0;
-  margin: 0;
+  .checkout-btn {
+    margin-top: 32px;
+    width: 100%;
+    padding: 16px;
+    font-size: 1.1rem;
+    background: $text-accent;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba($text-accent, 0.3);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba($text-accent, 0.4);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
 }

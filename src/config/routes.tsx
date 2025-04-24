@@ -4,7 +4,9 @@ import Auth from 'pages/Auth';
 import Cart from 'pages/Cart';
 import Product from 'pages/Product';
 import Products from 'pages/Products';
+import Profile from 'pages/Profile';
 import App from '../App';
+
 import { routesMasks } from './routesMasks';
 
 export const routesConfig: RouteObject[] = [
@@ -27,6 +29,10 @@ export const routesConfig: RouteObject[] = [
       {
         path: routesMasks.auth.mask,
         element: <Auth />,
+      },
+      {
+        path: routesMasks.profile.mask,
+        element: <Profile />,
       },
     ],
   },

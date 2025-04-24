@@ -11,8 +11,10 @@
   &__image {
     margin: 0px;
     padding: 0px;
-
+    overflow: hidden;
+    // max-height: 300px;
     img {
+      aspect-ratio: 1/1;
       background-color: $card-image-bg;
       display: block;
       width: 100%;
@@ -39,6 +41,7 @@
 
   &__footer {
     margin-top: auto;
+    gap: 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;

@@ -9,7 +9,7 @@ export enum FormKind {
   REGISTER = 'register',
 }
 
-type PrivateFields = '_formInfo' | '_formKind' | '_avatarFile' | '_avatarError' | '_meta' | '_apiError';
+type PrivateFields = '_formInfo' | '_formKind' | '_avatarFile' | '_avatarError' | '_meta' | '_apiMessage';
 
 export default class AuthStore implements ILocalStore {
   private _formKind: FormKind = FormKind.LOGIN;
@@ -29,7 +29,7 @@ export default class AuthStore implements ILocalStore {
   private _avatarFile: File | null = null;
   private _avatarError: string = '';
   private _meta = Meta.initial;
-  private _apiError: string = '';
+  private _apiMessage: string = '';
 
   constructor() {
     makeObservable<AuthStore, PrivateFields>(this, {
@@ -38,7 +38,7 @@ export default class AuthStore implements ILocalStore {
       _formKind: observable,
       _avatarFile: observable,
       _avatarError: observable,
-      _apiError: observable,
+      _apiMessage: observable,
 
       emailValue: computed,
       passwordValue: computed,
@@ -53,7 +53,7 @@ export default class AuthStore implements ILocalStore {
       namePlaceholder: computed,
       formKind: computed,
       meta: computed,
-      apiError: computed,
+      apiMessage: computed,
 
       setEmailValue: action,
       setPasswordValue: action,
@@ -80,7 +80,7 @@ export default class AuthStore implements ILocalStore {
       });
     } catch {
       runInAction(() => {
-        this._apiError = 'Problem while authorizing';
+        this._apiMessage = 'Problem while authorizing';
         this._meta = Meta.error;
       });
       return;
@@ -89,7 +89,7 @@ export default class AuthStore implements ILocalStore {
     runInAction(() => {
       if (response.success) {
         this._meta = Meta.success;
-        this._apiError = '';
+        this._apiMessage = 'Success!';
         return;
       }
 
@@ -108,7 +108,7 @@ export default class AuthStore implements ILocalStore {
       });
     } catch {
       runInAction(() => {
-        this._apiError = 'Problem while uploading photo';
+        this._apiMessage = 'Problem while uploading photo';
         this._meta = Meta.error;
       });
       return;
@@ -135,7 +135,7 @@ export default class AuthStore implements ILocalStore {
       });
     } catch {
       runInAction(() => {
-        this._apiError = 'Sorry, no user found with this login and password';
+        this._apiMessage = 'Sorry, no user found with this login and password';
         this._meta = Meta.error;
       });
       return;
@@ -145,7 +145,7 @@ export default class AuthStore implements ILocalStore {
       if (response.success) {
         this._meta = Meta.success;
         sStorageStore.setAuthToken(response.data.access_token);
-        this._apiError = '';
+        this._apiMessage = 'Success!';
         return true;
       }
 
@@ -272,8 +272,8 @@ export default class AuthStore implements ILocalStore {
     return this._avatarError;
   }
 
-  get apiError() {
-    return this._apiError;
+  get apiMessage() {
+    return this._apiMessage;
   }
 
   setEmailError(val: string) {
@@ -300,7 +300,7 @@ export default class AuthStore implements ILocalStore {
     this.clearFormInfo();
     this._avatarError = '';
     this._formKind = val;
-    this._apiError = '';
+    this._apiMessage = '';
   }
 
   clearFormInfo() {
@@ -325,6 +325,6 @@ export default class AuthStore implements ILocalStore {
     this._avatarFile = null;
     this._avatarError = '';
     this._meta = Meta.initial;
-    this._apiError = '';
+    this._apiMessage = '';
   }
 }

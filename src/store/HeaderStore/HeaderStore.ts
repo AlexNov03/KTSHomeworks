@@ -4,16 +4,22 @@ import sStorageStore from 'store/SessionStorage';
 
 import { ILocalStore } from 'utils/useLocalStore';
 
-type PrivateFields = '_avatar';
+type PrivateFields = '_avatar' | '_name' | '_email';
 
 export default class HeaderStore implements ILocalStore {
   private _avatar: string = '';
+  private _name: string = '';
+  private _email: string = '';
 
   constructor() {
     makeObservable<HeaderStore, PrivateFields>(this, {
       _avatar: observable,
-      getAvatar: action.bound,
+      _name: observable,
+      _email: observable,
+      getData: action.bound,
       avatar: computed,
+      name: computed,
+      email: computed,
     });
   }
 
@@ -21,7 +27,15 @@ export default class HeaderStore implements ILocalStore {
     return this._avatar;
   }
 
-  async getAvatar() {
+  get name() {
+    return this._name;
+  }
+
+  get email() {
+    return this._email;
+  }
+
+  async getData() {
     let response;
 
     try {
@@ -38,21 +52,30 @@ export default class HeaderStore implements ILocalStore {
     runInAction(() => {
       if (response.success) {
         this._avatar = response.data.avatar;
+        this._name = response.data.name;
+        this._email = response.data.email;
         return;
       }
       this._avatar = '';
     });
   }
 
-  destroy() {
+  clearData() {
     this._avatar = '';
+    this._email = '';
+    this._name = '';
+  }
+
+  destroy() {
+    this.clearData();
     this._reactionLoginDisposer();
   }
 
   private readonly _reactionLoginDisposer: IReactionDisposer = reaction(
     () => sStorageStore.authToken,
     () => {
-      this.getAvatar();
+      this.clearData();
+      this.getData();
     },
   );
 }

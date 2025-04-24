@@ -1,13 +1,13 @@
 import { observer } from 'mobx-react-lite';
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router';
 import Button from 'components/Button';
 import Card from 'components/Card';
+import ProductCounter from 'components/ProductCounter';
 
 import { routesMasks } from 'config/routesMasks';
 import { ProductData } from 'models/Products/ProductData';
-import lStorageStore from 'store/LStorageStore';
 import styles from './CardFeed.module.scss';
 
 export type CardFeedProps = {
@@ -17,6 +17,15 @@ export type CardFeedProps = {
 
 const CardFeed: React.FC<CardFeedProps> = ({ cards, loading }) => {
   const navigate = useNavigate();
+  const [showCounters, setShowCounters] = useState<Record<number, boolean>>({});
+
+  const toggleCounter = (id: number) => {
+    setShowCounters((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
   return (
     <div className={styles['card-feed']}>
       {loading
@@ -25,6 +34,7 @@ const CardFeed: React.FC<CardFeedProps> = ({ cards, loading }) => {
           ))
         : cards.map((card) => {
             const { id, title, slug, price, description, images } = card;
+            const showCounter = showCounters[id];
             return (
               <Card
                 key={id}
@@ -34,23 +44,33 @@ const CardFeed: React.FC<CardFeedProps> = ({ cards, loading }) => {
                 captionSlot={slug}
                 contentSlot={`$${price}`}
                 actionSlot={
-                  <Button
+                  <div
+                    className={styles['card-action-slot']}
                     onClick={(e) => {
                       e.stopPropagation();
-                      lStorageStore.addCartProduct({
-                        id: id,
-                        title: title,
-                        slug: slug,
-                        price: price,
-                        description: description,
-                        images: images,
-                        amount: 1,
-                      });
-                      navigate(routesMasks.cart.create());
                     }}
                   >
-                    Add to Cart
-                  </Button>
+                    <Button
+                      onClick={() => {
+                        toggleCounter(id);
+                      }}
+                    >
+                      {showCounter ? 'Hide' : 'Add to Cart'}
+                    </Button>
+                    {showCounter && (
+                      <ProductCounter
+                        data={{
+                          id,
+                          title,
+                          slug,
+                          price,
+                          description,
+                          images,
+                          amount: 1,
+                        }}
+                      />
+                    )}
+                  </div>
                 }
                 onClick={() => {
                   navigate(routesMasks.product.create(id));

@@ -8,11 +8,11 @@ import './index.scss';
 import './variables.scss';
 import 'regenerator-runtime';
 
-// const router = createBrowserRouter(routesConfig);
+const router = createBrowserRouter(routesConfig);
 
 // createRoot(document.getElementById('root')!).render(<RouterProvider router={router} />);
 
-const router = createBrowserRouter(routesConfig);
+// const router = createHashRouter(routesConfig);
 const root = createRoot(document.getElementById('root')!);
 
 root.render(<RouterProvider router={router} />);

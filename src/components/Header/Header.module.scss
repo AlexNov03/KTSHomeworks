@@ -5,18 +5,16 @@
   align-items: center;
   justify-content: space-between;
   background-color: $header-bg;
-  padding: 10px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding: 10px 16px;
+  width: 100%;
+  box-sizing: border-box;
 
   @media (min-width: 768px) {
-    padding-left: 32px;
-    padding-right: 32px;
+    padding: 10px 32px;
   }
 
   @media (min-width: 992px) {
-    padding-left: 100px;
-    padding-right: 100px;
+    padding: 10px 100px;
   }
 
   &__aside-bar {
@@ -25,30 +23,130 @@
   }
 }
 
-.products-counter {
-  position: relative;
-  &__item {
-    position: absolute;
-    background-color: $header-products-counter-bg;
-    color: $text-button;
-    border-radius: 50%;
-    padding: 0px 6px 0px 6px;
-    z-index: 5;
-    transform: translateX(-85%);
-  }
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .auth {
   cursor: pointer;
   display: flex;
-  gap: 5px;
+  gap: 10px;
   align-items: center;
   margin-right: 20px;
+
+  &__trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
   &__image {
     width: 35px;
     height: 35px;
     border-radius: 50%;
     object-fit: cover;
+  }
+
+  &__dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.dropdown-menu {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background-color: $header-bg;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  animation: slideDown 0.3s ease-out;
+
+  @media (min-width: 768px) {
+    padding: 16px 32px;
+    top: 60px;
+  }
+
+  @media (min-width: 992px) {
+    padding: 16px 100px;
+    top: 60px;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  padding: 12px 0;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.cart-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.products-counter {
+  &__item {
+    position: absolute;
+    background-color: $header-products-counter-bg;
+    color: $text-button;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    top: 50%;
+    left: 50%;
+  }
+}
+
+.menu-overlay {
+  height: 150vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+@media (min-width: 768px) {
+  .auth__dropdown {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .dropdown-menu {
+    padding: 16px 32px;
+  }
+}
+
+@media (min-width: 992px) {
+  .dropdown-menu {
+    padding: 16px 100px;
   }
 }

@@ -1,6 +1,7 @@
 import { useLocalStore, observer } from 'mobx-react-lite';
 import React from 'react';
 import { useParams } from 'react-router';
+import BackButton from 'components/BackButton';
 import Loader from 'components/Loader';
 import ProductStore from 'store/ProductStore';
 import { Meta } from 'utils/meta';
@@ -20,24 +21,29 @@ const Product = () => {
   }, [id, productStore]);
 
   return (
-    <div className={styles['product-page']}>
-      {productStore.meta === Meta.loading && (
-        <div className={styles['product-page__loader']}>
-          <Loader size="l" />
-        </div>
-      )}
-      {productStore.cardData && (
-        <ProductOverview
-          images={productStore.cardData.images}
-          title={productStore.cardData.title}
-          description={productStore.cardData.description}
-          price={productStore.cardData.price}
-          getPrevPhoto={productStore.getPrevPhoto}
-          getNextPhoto={productStore.getNextPhoto}
-          currentIdx={productStore.currentIdx}
-        />
-      )}
-    </div>
+    <>
+      <div className={styles['product-page']}>
+        <BackButton className={styles['product-page__back-button']} />
+        {productStore.meta === Meta.loading && (
+          <div className={styles['product-page__loader']}>
+            <Loader size="l" />
+          </div>
+        )}
+        {productStore.cardData && (
+          <ProductOverview
+            images={productStore.cardData.images}
+            title={productStore.cardData.title}
+            description={productStore.cardData.description}
+            price={productStore.cardData.price}
+            getPrevPhoto={productStore.getPrevPhoto}
+            getNextPhoto={productStore.getNextPhoto}
+            currentIdx={productStore.currentIdx}
+            id={productStore.cardData.id}
+            slug={productStore.cardData.slug}
+          />
+        )}
+      </div>
+    </>
   );
 };
 

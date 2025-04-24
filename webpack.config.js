@@ -45,7 +45,7 @@ export default {
   output: {
     path: buildPath,
     filename: 'bundle.js',
-    publicPath: '/KTSHomeworks/',
+    publicPath: '/',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -79,7 +79,7 @@ export default {
         use: getSettingsForStyles(),
       },
       {
-        test: /\.(woff2|png|svg|jpg)$/,
+        test: /\.(woff2|png|svg|jpg|webp)$/,
         type: 'asset',
         parser: {
           dataUrlCondition: {

@@ -1,0 +1,710 @@
+@use "src/variables.scss" as *;
+
+// .profile-page {
+//   padding: 0 16px 40px;
+//   position: relative;
+//   overflow: hidden;
+
+//   &::before {
+//     content: "";
+//     position: absolute;
+//     top: -50px;
+//     right: -50px;
+//     width: 200px;
+//     height: 200px;
+//     border-radius: 50%;
+//     background: radial-gradient(circle, rgba($text-primary, 0.1) 0%, rgba($text-primary, 0) 70%);
+//     z-index: -1;
+//   }
+
+//   &__back-button {
+//     margin-top: 1.5rem;
+//     position: relative;
+//     z-index: 2;
+//     transition: all 0.3s ease;
+
+//     &:hover {
+//       transform: translateX(-5px);
+//     }
+//   }
+
+//   &__title {
+//     margin: 1.5rem 0;
+//     font-size: 2rem;
+//     font-weight: 700;
+//     position: relative;
+//     display: inline-block;
+
+//     &::after {
+//       content: "";
+//       position: absolute;
+//       bottom: -8px;
+//       left: 0;
+//       width: 50%;
+//       height: 4px;
+//       background: linear-gradient(90deg, $text-primary, lighten($text-primary, 20%));
+//       border-radius: 2px;
+//     }
+
+//     @media (min-width: 768px) {
+//       font-size: 2.5rem;
+//       margin: 2rem 0 3rem;
+//     }
+//   }
+
+//   &__content {
+//     max-width: 800px;
+//     margin: 0 auto;
+//     position: relative;
+//   }
+
+//   @media (min-width: 768px) {
+//     padding: 0 32px 60px;
+
+//     &::before {
+//       width: 300px;
+//       height: 300px;
+//     }
+//   }
+
+//   @media (min-width: 992px) {
+//     padding: 0 60px 80px;
+
+//     &::after {
+//       content: "";
+//       position: absolute;
+//       bottom: 100px;
+//       left: -100px;
+//       width: 200px;
+//       height: 200px;
+//       border-radius: 50%;
+//       background: radial-gradient(circle, rgba($text-accent, 0.1) 0%, rgba($text-accent, 0) 70%);
+//       z-index: -1;
+//     }
+//   }
+// }
+
+// .profile-card {
+//   border-radius: 25px;
+//   background-color: $header-bg;
+//   padding: 30px 20px;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   position: relative;
+//   overflow: hidden;
+//   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+//   border: 1px solid rgba($text-primary, 0.1);
+
+//   &::before {
+//     content: "";
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 8px;
+//     background: linear-gradient(90deg, $text-primary, $text-accent);
+//   }
+
+//   &__avatar-container {
+//     width: 140px;
+//     height: 140px;
+//     border-radius: 50%;
+//     overflow: hidden;
+//     margin-bottom: 2rem;
+//     border: 4px solid white;
+//     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+//     position: relative;
+//     z-index: 1;
+//     transition: transform 0.3s ease;
+
+//     &:hover {
+//       transform: scale(1.05);
+//     }
+//   }
+
+//   &__avatar {
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover;
+//   }
+
+//   &__info {
+//     margin-bottom: 2.5rem;
+//     width: 100%;
+//     position: relative;
+//     padding-top: 1.5rem;
+
+//     &::before {
+//       content: "";
+//       position: absolute;
+//       top: 0;
+//       left: 50%;
+//       transform: translateX(-50%);
+//       width: 80px;
+//       height: 3px;
+//       background: linear-gradient(90deg, $text-primary, $text-accent);
+//       border-radius: 3px;
+//     }
+//   }
+
+//   &__name {
+//     font-size: 1.8rem;
+//     margin: 0 0 0.8rem 0;
+//     color: $text-primary;
+//     font-weight: 700;
+//     letter-spacing: -0.5px;
+//     position: relative;
+//     display: inline-block;
+
+//     &::after {
+//       content: "";
+//       position: absolute;
+//       bottom: -5px;
+//       left: 0;
+//       width: 100%;
+//       height: 2px;
+//       background: linear-gradient(90deg, rgba($text-primary, 0.5), rgba($text-accent, 0.5));
+//       transform: scaleX(0);
+//       transition: transform 0.3s ease;
+//     }
+
+//     &:hover::after {
+//       transform: scaleX(1);
+//     }
+//   }
+
+//   &__email {
+//     font-size: 1.1rem;
+//     margin: 0 0 2rem 0;
+//     color: $text-secondary;
+//     position: relative;
+//     display: inline-block;
+//     padding: 0 10px;
+
+//     &::before,
+//     &::after {
+//       content: "✉";
+//       position: absolute;
+//       top: 50%;
+//       transform: translateY(-50%);
+//       font-size: 0.9rem;
+//       opacity: 0.5;
+//     }
+
+//     &::before {
+//       left: -10px;
+//     }
+
+//     &::after {
+//       right: -10px;
+//     }
+//   }
+
+//   &__logout-button {
+//     width: 100%;
+//     max-width: 220px;
+//     background: linear-gradient(135deg, $error-color, darken($error-color, 10%));
+//     color: white;
+//     border: none;
+//     padding: 12px 24px;
+//     border-radius: 50px;
+//     font-weight: 600;
+//     font-size: 1rem;
+//     cursor: pointer;
+//     transition: all 0.3s ease;
+//     box-shadow: 0 4px 15px rgba($error-color, 0.3);
+//     position: relative;
+//     overflow: hidden;
+//     z-index: 1;
+
+//     &::before {
+//       content: "";
+//       position: absolute;
+//       top: 0;
+//       left: -100%;
+//       width: 100%;
+//       height: 100%;
+//       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+//       transition: 0.5s;
+//       z-index: -1;
+//     }
+
+//     &:hover {
+//       transform: translateY(-3px);
+//       box-shadow: 0 6px 20px rgba($error-color, 0.4);
+
+//       &::before {
+//         left: 100%;
+//       }
+//     }
+//   }
+
+//   @media (min-width: 768px) {
+//     padding: 40px 30px;
+//     flex-direction: row;
+//     align-items: flex-start;
+//     text-align: left;
+
+//     &__avatar-container {
+//       margin-right: 2.5rem;
+//       margin-bottom: 0;
+//       width: 160px;
+//       height: 160px;
+//     }
+
+//     &__info {
+//       padding-top: 0;
+//       padding-left: 2rem;
+//       border-left: 2px dashed rgba($text-secondary, 0.2);
+
+//       &::before {
+//         display: none;
+//       }
+//     }
+
+//     &__logout-button {
+//       position: absolute;
+//       bottom: 30px;
+//       right: 30px;
+//       max-width: 180px;
+//     }
+//   }
+
+//   @media (min-width: 992px) {
+//     padding: 50px 40px;
+
+//     &__avatar-container {
+//       width: 180px;
+//       height: 180px;
+//       margin-right: 3rem;
+//     }
+
+//     &__name {
+//       font-size: 2rem;
+//     }
+
+//     &__email {
+//       font-size: 1.2rem;
+//     }
+//   }
+// }
+
+// .profile-page {
+//   padding: 0 16px 40px;
+//   position: relative;
+
+//   &__back-button {
+//     margin-top: 1.5rem;
+//     transition: transform 0.3s ease;
+
+//     &:hover {
+//       transform: translateX(-5px);
+//     }
+//   }
+
+//   &__title {
+//     margin: 1.5rem 0;
+//     font-size: 2rem;
+//     font-weight: 700;
+//     position: relative;
+//     display: inline-block;
+
+//     &::after {
+//       content: "";
+//       position: absolute;
+//       bottom: -8px;
+//       left: 0;
+//       width: 50%;
+//       height: 3px;
+//       background: $text-primary;
+//       border-radius: 2px;
+//     }
+
+//     @media (min-width: 768px) {
+//       font-size: 2.5rem;
+//       margin: 2rem 0 3rem;
+//     }
+//   }
+
+//   &__content {
+//     max-width: 800px;
+//     margin: 0 auto;
+//     position: relative;
+//   }
+
+//   @media (min-width: 768px) {
+//     padding: 0 32px 60px;
+//   }
+
+//   @media (min-width: 992px) {
+//     padding: 0 60px 80px;
+//   }
+// }
+
+// .profile-card {
+//   border-radius: 25px;
+//   background-color: $header-bg;
+//   padding: 30px 20px;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   position: relative;
+//   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+//   border: 1px solid rgba($text-primary, 0.1);
+
+//   &::before {
+//     content: "";
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 8px;
+//     background: $text-primary;
+//   }
+
+//   &__avatar-container {
+//     width: 140px;
+//     height: 140px;
+//     border-radius: 50%;
+//     overflow: hidden;
+//     margin-bottom: 2rem;
+//     border: 4px solid white;
+//     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+//     position: relative;
+//   }
+
+//   &__avatar {
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover;
+//     display: block;
+//   }
+
+//   &__info {
+//     margin-bottom: 2.5rem;
+//     width: 100%;
+//     text-align: center;
+//   }
+
+//   &__name {
+//     font-size: 1.8rem;
+//     margin: 0 0 0.5rem 0;
+//     color: $text-primary;
+//     font-weight: 700;
+//     line-height: 1.2;
+//   }
+
+//   &__email {
+//     font-size: 1.1rem;
+//     margin: 0;
+//     color: $text-secondary;
+//     line-height: 1.5;
+//     display: block;
+//   }
+
+//   &__logout-button {
+//     width: 100%;
+//     max-width: 220px;
+//     background: $error-color;
+//     color: white;
+//     border: none;
+//     padding: 12px 24px;
+//     border-radius: 50px;
+//     font-weight: 600;
+//     font-size: 1rem;
+//     cursor: pointer;
+//     transition: all 0.3s ease;
+//     box-shadow: 0 4px 15px rgba($error-color, 0.3);
+//     position: relative;
+//     overflow: hidden;
+
+//     &:hover {
+//       transform: translateY(-3px);
+//       box-shadow: 0 6px 20px rgba($error-color, 0.4);
+//     }
+//   }
+
+//   @media (min-width: 768px) {
+//     padding: 40px;
+//     flex-direction: row;
+//     align-items: center;
+//     text-align: left;
+
+//     &__avatar-container {
+//       margin-right: 2.5rem;
+//       margin-bottom: 0;
+//       width: 160px;
+//       height: 160px;
+//     }
+
+//     &__info {
+//       text-align: left;
+//       margin-bottom: 0;
+//       flex: 1;
+//     }
+
+//     &__logout-button {
+//       margin-left: auto;
+//       max-width: 180px;
+//     }
+//   }
+
+//   @media (min-width: 992px) {
+//     padding: 50px;
+
+//     &__avatar-container {
+//       width: 180px;
+//       height: 180px;
+//       margin-right: 3rem;
+//     }
+
+//     &__name {
+//       font-size: 2rem;
+//     }
+
+//     &__email {
+//       font-size: 1.2rem;
+//     }
+//   }
+// }
+
+.profile-page {
+  padding: 0 16px 40px;
+  position: relative;
+
+  &__back-button {
+    margin-top: 1.5rem;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateX(-5px);
+    }
+  }
+
+  &__title {
+    margin: 1.5rem 0;
+    font-size: 2rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50%;
+      height: 3px;
+      background: $text-primary;
+      border-radius: 2px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 2.5rem;
+      margin: 2rem 0 3rem;
+    }
+  }
+
+  &__content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  @media (min-width: 768px) {
+    padding: 0 32px 60px;
+  }
+
+  @media (min-width: 992px) {
+    padding: 0 60px 80px;
+  }
+}
+
+.profile-card {
+  border-radius: 25px;
+  background-color: $header-bg;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba($text-primary, 0.1);
+  overflow: hidden;
+
+  &__avatar-container {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    border: 4px solid white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  &__avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &__info {
+    margin-bottom: 2.5rem;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__name {
+    font-size: 1.8rem;
+    margin: 0 0 0.5rem 0;
+    color: $text-primary;
+    font-weight: 700;
+    line-height: 1.2;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &::before {
+      content: "👤";
+      font-size: 0.9em;
+      opacity: 0.7;
+    }
+
+    &:hover::after {
+      width: 80%;
+    }
+  }
+
+  &__email {
+    font-size: 1.1rem;
+    margin: 1rem 0 0 0;
+    color: $text-secondary;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &::before {
+      content: "✉";
+      font-size: 0.9em;
+      opacity: 0.5;
+    }
+  }
+
+  &__logout-button {
+    width: 100%;
+    max-width: 220px;
+    background: $error-color;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba($error-color, 0.4);
+    }
+  }
+
+  @media (min-width: 768px) {
+    padding: 40px;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+
+    &__avatar-container {
+      margin-right: 2.5rem;
+      margin-bottom: 0;
+      width: 160px;
+      height: 160px;
+    }
+
+    &__info {
+      text-align: left;
+      margin-bottom: 0;
+      flex: 1;
+      align-items: flex-start;
+    }
+
+    &__name,
+    &__email {
+      &::before {
+        margin-right: 8px;
+      }
+    }
+
+    &__logout-button {
+      margin-left: auto;
+      max-width: 180px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    padding: 50px;
+
+    &__avatar-container {
+      width: 180px;
+      height: 180px;
+      margin-right: 3rem;
+    }
+
+    &__name {
+      font-size: 2rem;
+    }
+
+    &__email {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.profile {
+  &-not-auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    background-color: $app-bg;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+
+    &__icon {
+      margin-bottom: 1.5rem;
+      color: $text-secondary;
+    }
+
+    &__title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: $text-primary;
+    }
+
+    &__text {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      color: $text-secondary;
+    }
+
+    &__button {
+      width: 100%;
+      max-width: 200px;
+    }
+  }
+}

@@ -10,10 +10,22 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onCh
   error?: string;
   caption?: string;
   ref?: Ref<HTMLInputElement | null>;
+  type?: string;
 };
 
 const Input: React.FC<InputProps> = (props) => {
-  const { ref, value, className, placeholder, afterSlot, onChange, error, caption, ...restProps } = props;
+  const {
+    ref,
+    type = 'text',
+    value,
+    className,
+    placeholder,
+    afterSlot,
+    onChange,
+    error,
+    caption,
+    ...restProps
+  } = props;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
@@ -29,7 +41,7 @@ const Input: React.FC<InputProps> = (props) => {
         <input
           ref={ref}
           {...restProps}
-          type="text"
+          type={type}
           value={value}
           placeholder={placeholder}
           onChange={handleChange}

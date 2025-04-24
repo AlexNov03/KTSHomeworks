@@ -7,30 +7,39 @@ import styles from './CartSummary.module.scss';
 
 const CartSummary = () => {
   const discount = lStorageStore.getDiscount();
+  const total = lStorageStore.getTotalSumm() - discount;
+
   return (
     <div className={styles['cart-summary']}>
-      <Text tag="h2" className={classNames(styles['underly'], styles['cart-summary__header'])}>
+      <Text tag="h2" className={styles['cart-summary__header']}>
         Order Summary
       </Text>
+
       <div className={styles['cart-summary__info']}>
         <Text view="p-18">{`Items (${lStorageStore.getProductsAmount()})`}</Text>
-        <Text view="p-18">${lStorageStore.getTotalSumm()}</Text>
+        <Text view="p-18">${lStorageStore.getTotalSumm().toFixed(2)}</Text>
       </div>
+
       <div className={styles['cart-summary__info']}>
         <Text view="p-18">Discount</Text>
         <Text className={styles['cart-summary__discount']} view="p-18">
-          ${discount}
+          ${discount.toFixed(2)}
         </Text>
       </div>
-      <div className={classNames(styles['underly'], styles['cart-summary__info'])}>
-        <Text view="p-18">Shipping</Text>
-        <Text view="p-18">Free</Text>
-      </div>
+
       <div className={styles['cart-summary__info']}>
-        <Text tag="h2">Total</Text>
-        <Text tag="h2">${lStorageStore.getTotalSumm() - discount}</Text>
+        <Text view="p-18">Shipping</Text>
+        <Text view="p-18" color="accent">
+          Free
+        </Text>
       </div>
-      <Button>Proceed to Checkout</Button>
+
+      <div className={classNames(styles['cart-summary__info'], styles['total-row'])}>
+        <Text tag="h3">Total</Text>
+        <Text tag="h3">${total.toFixed(2)}</Text>
+      </div>
+
+      <Button className={styles['checkout-btn']}>Proceed to Checkout</Button>
     </div>
   );
 };

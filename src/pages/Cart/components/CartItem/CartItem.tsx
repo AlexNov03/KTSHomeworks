@@ -1,13 +1,15 @@
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
+import ProductCounter from 'components/ProductCounter';
 import Text from 'components/Text';
 import GarbageIcon from 'components/icons/GarbageIcon';
 import HeartIcon from 'components/icons/HeartIcon';
 import Icon from 'components/icons/Icon';
 import lStorageStore, { LStorageProductData } from 'store/LStorageStore';
 
-import ProductCounter from '../ProductCounter';
+import defaultImage from '../../../../assets/image.png';
+
 import styles from './CartItem.module.scss';
 
 export type CartItemProps = {
@@ -16,10 +18,15 @@ export type CartItemProps = {
 
 const CartItem: React.FC<CartItemProps> = ({ data }) => {
   const id = data.id;
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const img = e.target as HTMLImageElement;
+    img.src = defaultImage;
+    img.onerror = null;
+  };
   return (
     <div className={styles['cart-item']}>
       <div className={styles['cart-item__image']}>
-        <img src={data.images[0]} />
+        <img referrerPolicy="no-referrer" src={data.images[0]} alt="card-img" onError={handleImageError} />
       </div>
       <main className={styles['cart-item__content']}>
         <div className={styles['cart-item__header']}>
